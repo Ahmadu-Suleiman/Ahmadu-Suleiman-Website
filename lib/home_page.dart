@@ -31,9 +31,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double itemWidth = screenWidth > 600 ? screenWidth / 2 : screenWidth;
-
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -92,7 +89,7 @@ String description() => '''
 </head>
 <body>
 
-<h1>Welcome to <b>FLD Floating Dictionary</b>, Search word meanings instantly!</h1>
+<h1>Welcome to <b>FLD Floating Dictionary</b>, search word meanings instantly!</h1>
 
 <h2>Why Choose FLD Floating Dictionary?</h2>
 <ul>
