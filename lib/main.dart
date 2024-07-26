@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'FLD Info',
+        title: 'Ahmad Suleiman',
         theme: ThemeData(
             fontFamily: 'Lato',
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
