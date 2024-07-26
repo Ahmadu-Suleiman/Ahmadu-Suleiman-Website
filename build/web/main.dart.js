@@ -54209,7 +54209,7 @@ A.a8H.prototype={
 $0(){return A.aDc(A.dC("https://play.google.com/store/apps/details?id=com.meta4projects.fldfloatingdictionary",0,null))},
 $S:0}
 A.Q5.prototype={
-N(a){return new A.CF(B.UO,"FLD Info",A.aMO(null,A.aVN(B.a7,B.UA),"Lato",!0),null)}}
+N(a){return new A.CF(B.UO,"Ahmad Suleiman",A.aMO(null,A.aVN(B.a7,B.UA),"Lato",!0),null)}}
 A.kn.prototype={
 I(){return"AnimationStatus."+this.b}}
 A.ck.prototype={
