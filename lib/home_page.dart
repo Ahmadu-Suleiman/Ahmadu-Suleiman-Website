@@ -48,13 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.symmetric(horizontal: 80),
             child: DownloadButton(),
           ),
-          Card(
-              child: SizedBox(
-                  width: 400,
-                  height: 850,
-                  child: Image(
-                      image: AssetImage(
-                          'assets/fld_screenshots/$currentImageIndex.png'))))
+          SizedBox(
+              width: 400,
+              height: 850,
+              child: Image(
+                  image: AssetImage(
+                      'assets/fld_screenshots/$currentImageIndex.png')))
         ]));
   }
 }
