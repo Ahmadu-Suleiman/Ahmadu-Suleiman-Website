@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -33,7 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: GestureDetector(
                 onTap: () => setState(() {}),
                 child: Image.asset(
@@ -61,16 +61,15 @@ class DownloadButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextButton.icon(
-          style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(
-                  Theme.of(context).colorScheme.inversePrimary)),
-          onPressed: () => openFLDLink(),
-          label:
-              Text('Download', style: Theme.of(context).textTheme.labelLarge),
-          icon: const Icon(Icons.android)),
-    );
+        padding: const EdgeInsets.all(8.0),
+        child: TextButton.icon(
+            style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(
+                    Theme.of(context).colorScheme.inversePrimary)),
+            onPressed: () => openFLDLink(),
+            label:
+                Text('Download', style: Theme.of(context).textTheme.labelLarge),
+            icon: const FaIcon(FontAwesomeIcons.googlePlay)));
   }
 }
 
