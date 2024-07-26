@@ -88,7 +88,7 @@ String description() => '''
 </head>
 <body>
 
-<h1>Welcome to <b>FLD Floating Dictionary</b>, search word meanings instantly!</h1>
+<h1><b>Ahmad Suleiman</b> introduces <b>FLD Floating Dictionary</b>, <i>search word meanings instantly!</i></h1>
 
 <h2>Why Choose FLD Floating Dictionary?</h2>
 <ul>
