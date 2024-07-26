@@ -1,11 +1,11 @@
 {
-    "name": "fld_info",
-    "short_name": "fld_info",
+    "name": "Ahmad Suleiman",
+    "short_name": "Ahmad Suleiman",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Ahmad Suleiman showcases FLD Floating Dictionary",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

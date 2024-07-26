@@ -77,6 +77,7 @@ void openFLDLink() => launchUrl(Uri.parse(
     'https://play.google.com/store/apps/details?id=com.meta4projects.fldfloatingdictionary'));
 
 String description() => '''
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
 <style>
   ul {
     list-style-type: disc;
