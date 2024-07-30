@@ -78,14 +78,6 @@ void openFLDLink() => launchUrl(Uri.parse(
 
 String description() => '''
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
-<style>
-  ul {
-    list-style-type: disc;
-  }
-  li::before {
-    content: "• ";
-  }
-</style>
 </head>
 <body>
 
