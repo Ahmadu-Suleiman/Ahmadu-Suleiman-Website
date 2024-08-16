@@ -1,5 +1,5 @@
 import 'package:ahmad_suleiman/home_page.dart';
-import 'package:ahmad_suleiman/privacy_policies/take_note_policy.dart';
+import 'package:ahmad_suleiman/policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,9 +12,19 @@ class Routes {
         },
         routes: <RouteBase>[
           GoRoute(
+              path: 'fld-policy',
+              builder: (BuildContext context, GoRouterState state) {
+                return const PolicyPage(name: 'FLD Floating Dictionary');
+              }),
+          GoRoute(
               path: 'take-note-policy',
               builder: (BuildContext context, GoRouterState state) {
-                return const TakeNotePolicy();
+                return const PolicyPage(name: 'Take Note');
+              }),
+          GoRoute(
+              path: 'hilarity-policy',
+              builder: (BuildContext context, GoRouterState state) {
+                return const PolicyPage(name: 'Hilarity Jokes');
               })
         ])
   ]);
