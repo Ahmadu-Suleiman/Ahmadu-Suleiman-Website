@@ -1,5 +1,5 @@
-import 'package:ahmad_suleiman_website/home_page.dart';
-import 'package:ahmad_suleiman_website/privacy_policies/take_note_policy.dart';
+import 'package:ahmad_suleiman/home_page.dart';
+import 'package:ahmad_suleiman/privacy_policies/take_note_policy.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,7 +15,7 @@ class Routes {
               path: 'take-note-policy',
               builder: (BuildContext context, GoRouterState state) {
                 return const TakeNotePolicy();
-              }),
+              })
         ])
   ]);
 }

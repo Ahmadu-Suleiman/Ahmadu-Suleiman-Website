@@ -36,19 +36,31 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
             title: const Text('Ahmad Suleiman'),
             actions: const [DownloadButton()]),
-        body: ListView(padding: const EdgeInsets.all(8), children: [
-          HtmlWidget(description,
-              textStyle: Theme.of(context).textTheme.bodyLarge),
-          const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 80),
-              child: DownloadButton()),
-          SizedBox(
-              width: 400,
-              height: 850,
-              child: Image(
-                  image: AssetImage(
-                      'assets/fld_screenshots/$currentImageIndex.png')))
-        ]));
+        body: ScrollConfiguration(
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Wrap(children: <Widget>[
+                  SizedBox(
+                      width: 800,
+                      child: HtmlWidget(description,
+                          textStyle: Theme.of(context).textTheme.bodyLarge)),
+                  Image.asset(width: 700, 'assets/images/me.png')
+                ]))));
+
+    ListView(padding: const EdgeInsets.all(8), children: [
+      HtmlWidget(description, textStyle: Theme.of(context).textTheme.bodyLarge),
+      const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 80),
+          child: DownloadButton()),
+      // SizedBox(
+      //     width: 400,
+      //     height: 850,
+      //     child: Image(
+      //         image: AssetImage(
+      //             'assets/fld_screenshots/$currentImageIndex.png')))
+    ]);
   }
 }
 
@@ -63,15 +75,14 @@ class DownloadButton extends StatelessWidget {
             style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
                     Theme.of(context).colorScheme.inversePrimary)),
-            onPressed: () => openFLDLink(),
-            label:
-                Text('Download', style: Theme.of(context).textTheme.labelLarge),
+            onPressed: () => openGooglePlayLink(),
+            label: Text('Apps', style: Theme.of(context).textTheme.labelLarge),
             icon: const FaIcon(FontAwesomeIcons.googlePlay)));
   }
 }
 
-void openFLDLink() => launchUrl(Uri.parse(
-    'https://play.google.com/store/apps/details?id=com.meta4projects.fldfloatingdictionary'));
+void openGooglePlayLink() => launchUrl(
+    Uri.parse('https://play.google.com/store/apps/dev?id=5382562347439530585'));
 
 String get description => '''
  <body>

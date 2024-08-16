@@ -1,4 +1,4 @@
-name: ahmad_suleiman_website
+name: ahmad_suleiman
 description: "Website for Ahmad Suleiman."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -38,8 +38,8 @@ dependencies:
   url_launcher: ^6.3.0
   flutter_widget_from_html: ^0.15.1
   flutter_launcher_icons: ^0.13.1
-  font_awesome_flutter: ^10.7.0
   go_router: ^14.2.3
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   flutter_test:
