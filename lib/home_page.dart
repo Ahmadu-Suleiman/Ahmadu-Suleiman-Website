@@ -73,7 +73,8 @@ class DownloadButton extends StatelessWidget {
                 backgroundColor: WidgetStateProperty.all(
                     Theme.of(context).colorScheme.inversePrimary)),
             onPressed: () => openGooglePlayLink(),
-            label: Text('Apps', style: Theme.of(context).textTheme.labelLarge),
+            label:
+                Text('My Apps', style: Theme.of(context).textTheme.labelLarge),
             icon: const FaIcon(FontAwesomeIcons.googlePlay)));
   }
 }
