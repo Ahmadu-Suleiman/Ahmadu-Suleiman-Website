@@ -5,14 +5,14 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int currentImageIndex = 0;
   late Timer _timer;
 
@@ -34,10 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: GestureDetector(
-                onTap: () => setState(() {}),
-                child: Image.asset(
-                    width: 50, height: 50, 'assets/images/fld logo.png')),
+            title: const Text('Ahmad Suleiman'),
             actions: const [DownloadButton()]),
         body: ListView(padding: const EdgeInsets.all(8), children: [
           HtmlWidget(description,
@@ -78,7 +75,11 @@ void openFLDLink() => launchUrl(Uri.parse(
 
 String get description => '''
  <body>
-    <h1><b>Ahmad Suleiman</b> introduces <b>FLD Floating Dictionary</b>, <i>search word meanings instantly!</i></h1>
+    <p><b>Hey there</b>, I'm Ahmad Suleiman, a passionate software engineer with a knack for 
+    crafting innovative solutions. My expertise spans app development, API 
+    creation, and data analysis. I thrive on transforming complex problems 
+    into elegant software systems. Or, to put it simply, I like to build 
+    stuff!</p>
     
     <h2>Why Choose FLD Floating Dictionary?</h2>
     <ul>

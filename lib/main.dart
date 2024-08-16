@@ -1,4 +1,4 @@
-import 'package:ahmad_suleiman_website/privacy_policies/take_note_policy.dart';
+import 'package:ahmad_suleiman_website/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
         title: 'Ahmad Suleiman',
         theme: ThemeData(
             fontFamily: 'Lato',
@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Lato',
             colorScheme: ColorScheme.fromSeed(
                 seedColor: Colors.brown, brightness: Brightness.dark)),
-        home: const TakeNotePolicy());
+        routerConfig: Routes.router);
   }
 }
