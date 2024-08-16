@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Text('Ahmad Suleiman'),
+            title: const Text('Ahmad Suleiman, Software Engineer'),
             actions: const [DownloadButton()]),
         body: ScrollConfiguration(
             behavior:
