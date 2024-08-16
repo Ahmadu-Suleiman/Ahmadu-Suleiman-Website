@@ -44,13 +44,19 @@ class _HomePageState extends State<HomePage> {
                 child: Wrap(children: <Widget>[
                   SizedBox(
                       width: 800,
-                      child: HtmlWidget(description,
+                      child: HtmlWidget(body,
                           textStyle: Theme.of(context).textTheme.bodyLarge)),
-                  Image.asset(width: 700, 'assets/images/me.png')
+                  Column(children: [
+                    Image.asset(width: 700, 'assets/images/me.png'),
+                    const Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                            'Detective Sherlock: This person above is Ahmad Suleiman'))
+                  ])
                 ]))));
 
     ListView(padding: const EdgeInsets.all(8), children: [
-      HtmlWidget(description, textStyle: Theme.of(context).textTheme.bodyLarge),
+      HtmlWidget(body, textStyle: Theme.of(context).textTheme.bodyLarge),
       const Padding(
           padding: EdgeInsets.symmetric(horizontal: 80),
           child: DownloadButton()),
@@ -84,7 +90,7 @@ class DownloadButton extends StatelessWidget {
 void openGooglePlayLink() => launchUrl(
     Uri.parse('https://play.google.com/store/apps/dev?id=5382562347439530585'));
 
-String get description => '''
+String get body => '''
  <body>
     <p><b>Hey there</b>, I'm Ahmad Suleiman, a passionate software engineer with a knack for 
     crafting innovative solutions. My expertise spans app development, API 
@@ -92,25 +98,39 @@ String get description => '''
     into elegant software systems. Or, to put it simply, I like to build 
     stuff!</p>
     
-    <h2>Why Choose FLD Floating Dictionary?</h2>
+    <h2>Some of my stuff</h2>
     <ul>
-      <li><b>Instant Access:</b> Look up words instantly without leaving your current app. Save time and stay focused.</li>
-      <li><b>Comprehensive Definitions:</b> Get detailed definitions, synonyms, antonyms, and usage examples.</li>
-      <li><b>Voice Search:</b> Use voice commands for hands-free convenience.</li>
-      <li><b>Offline Access:</b> Access the dictionary even when you're offline.</li>
-      <li><b>User-Friendly Interface:</b> Enjoy a sleek and intuitive design that makes learning enjoyable.</li>
+      <li><b><a href="https://play.google.com/store/apps/details?id=com.meta4projects.fldfloatingdictionary">
+      FLD Floating Dictionary:</a></b> A dictionary that allows you to look up 
+      words instantly without leaving your current app. Save time and stay 
+      focused.</li>
+      <li><b><a href="https://play.google.com/store/apps/details?id=com.meta4projects.takenote">
+      Take Note:</a></b> A note app that allows you to create subsections 
+      within notes for better organization.</li>
+      <li><b><a href="https://github.com/Ahmadu-Suleiman/WiPy">
+      WiPy:</a></b> A web app that turns your computer into a local storage 
+      repository that other devices on the same local network can connect to 
+      and download files from.</li>
+      <li><b><a href="https://github.com/Ahmadu-Suleiman/AgriAsk">
+      AgriAsk:</a></b> An innovative SMS-based agricultural consultation 
+      platform designed to empower farmers.</li>
+      <li><b><a href="https://github.com/Ahmadu-Suleiman/AskAll">
+      AskAll:</a></b> A revolutionary platform designed to provide Africans 
+      with instant access to Gemini AI through SMS text, overcoming the 
+      barriers of poor internet connectivity and limited access to information 
+      and communication technology (ICT) tools.</li>
     </ul>
     
-    <h2>Key Features</h2>
+    <h2>Contact me</h2>
     <ul>
-      <li><b>Instant Lookups:</b> Effortlessly search for definitions, synonyms, and antonyms.</li>
-      <li><b>Voice Search:</b> Hands-free convenience - simply speak the word.</li>
-      <li><b>Rich Definitions:</b> Explore in-depth explanations, examples, and parts of speech.</li>
-      <li><b>Bookmarks:</b> Save your favorite words for easy reference.</li>
-      <li><b>Etymology Insights:</b> Discover the fascinating history of words.</li>
-      <li><b>Offline Access:</b> Learn anytime, anywhere, without an internet connection.</li>
-      <li><b>Customizable Widget:</b> Quick access to your favorite words and definitions.</li>
-      <li><b>Sleek Interface:</b> Enjoy a visually appealing and user-friendly design.</li>
+      <li><b>Phone:</b> <a href="tel:+2348138445664">
+      +234 813 844 5664</a></li>
+      <li><b>Email:</b> <a href="mailto:ahmadumeta4.1@gmail.com">
+      ahmadumeta4.1@gmail.com</a></li>
+      <li><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/ahmad-suleiman-1a209a246/">
+      https://www.linkedin.com/in/ahmad-suleiman-1a209a246/</a></li>
+      <li><b>Github:</b> <a href="https://github.com/Ahmadu-Suleiman">
+      https://github.com/Ahmadu-Suleiman</a></li>
     </ul>
     
     <h2>How It Works</h2>
