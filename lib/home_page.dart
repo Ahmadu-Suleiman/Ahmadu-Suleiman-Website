@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,14 +51,21 @@ class _HomePageState extends State<HomePage> {
                               textStyle:
                                   Theme.of(context).textTheme.bodyLarge)),
                       Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 40),
                           child: Column(children: [
                             Image.asset(width: 400, 'assets/images/me.png'),
                             const SizedBox(height: 20),
                             const Text(
                                 'Detective Sherlock: This person above is Ahmad Suleiman')
                           ]))
-                    ])))));
+                    ])))),
+        bottomSheet: GestureDetector(
+            onTap: () => showPolicyDialog(context),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text('Privacy Policies',
+                  style: Theme.of(context).textTheme.bodyLarge)
+            ])));
   }
 }
 
@@ -126,3 +134,24 @@ String get body => '''
     </ul>   
 </body>
 ''';
+
+void showPolicyDialog(BuildContext context) async {
+  return showDialog<void>(
+      context: context, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+            title: const Text('Privacy Policies'),
+            content: SingleChildScrollView(
+                child: Column(children: [
+              TextButton(
+                  onPressed: () => context.go('/fld-policy'),
+                  child: const Text('FLD Floating Dictionary')),
+              TextButton(
+                  onPressed: () => context.go('/take-note-policy'),
+                  child: const Text('Take Note')),
+              TextButton(
+                  onPressed: () => context.go('/hilarity-policy'),
+                  child: const Text('Hilarity Jokes'))
+            ])));
+      });
+}
