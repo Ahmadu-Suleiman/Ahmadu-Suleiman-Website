@@ -42,22 +42,22 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Wrap(children: <Widget>[
-                    SizedBox(
-                        width: 1000,
-                        child: HtmlWidget(body,
-                            textStyle: Theme.of(context).textTheme.bodyLarge)),
-                    Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(children: [
-                          Image.asset(width: 400, 'assets/images/me.png'),
-                          const SizedBox(height: 20),
-                          const Text(
-                              'Detective Sherlock: This person above is Ahmad Suleiman')
-                        ]))
-                  ]),
-                ))));
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Wrap(children: <Widget>[
+                      SizedBox(
+                          width: 1000,
+                          child: HtmlWidget(body,
+                              textStyle:
+                                  Theme.of(context).textTheme.bodyLarge)),
+                      Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(children: [
+                            Image.asset(width: 400, 'assets/images/me.png'),
+                            const SizedBox(height: 20),
+                            const Text(
+                                'Detective Sherlock: This person above is Ahmad Suleiman')
+                          ]))
+                    ])))));
   }
 }
 
