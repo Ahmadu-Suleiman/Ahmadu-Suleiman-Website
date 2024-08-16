@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class TakeNotePolicy extends StatelessWidget {
   const TakeNotePolicy({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(title: const Text('Take Note Policy')),
+        body: SingleChildScrollView(
+            padding: const EdgeInsets.all(8),
+            child: HtmlWidget(body,
+                textStyle: Theme.of(context).textTheme.bodyLarge)));
   }
 
   String get body => '''
   <body>
-    <strong>Privacy Policy</strong><p>This privacy policy applies to the 
+    <p>This privacy policy applies to the 
     Take Note app (hereby referred to as "Application") for mobile devices that 
     was created by Ahmad Suleiman (hereby referred to as "Service Provider") as 
     an Ad Supported service. This service is intended for use "AS IS".</p><br>

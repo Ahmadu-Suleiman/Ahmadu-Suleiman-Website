@@ -40,12 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 50, height: 50, 'assets/images/fld logo.png')),
             actions: const [DownloadButton()]),
         body: ListView(padding: const EdgeInsets.all(8), children: [
-          HtmlWidget(description(),
+          HtmlWidget(description,
               textStyle: Theme.of(context).textTheme.bodyLarge),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 80),
-            child: DownloadButton(),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 80),
+              child: DownloadButton()),
           SizedBox(
               width: 400,
               height: 850,
@@ -77,7 +76,7 @@ class DownloadButton extends StatelessWidget {
 void openFLDLink() => launchUrl(Uri.parse(
     'https://play.google.com/store/apps/details?id=com.meta4projects.fldfloatingdictionary'));
 
-String description() => '''
+String get description => '''
  <body>
     <h1><b>Ahmad Suleiman</b> introduces <b>FLD Floating Dictionary</b>, <i>search word meanings instantly!</i></h1>
     
