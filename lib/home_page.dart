@@ -40,33 +40,24 @@ class _HomePageState extends State<HomePage> {
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Wrap(children: <Widget>[
-                  SizedBox(
-                      width: 800,
-                      child: HtmlWidget(body,
-                          textStyle: Theme.of(context).textTheme.bodyLarge)),
-                  Column(children: [
-                    Image.asset(width: 700, 'assets/images/me.png'),
-                    const Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Text(
-                            'Detective Sherlock: This person above is Ahmad Suleiman'))
-                  ])
-                ]))));
-
-    ListView(padding: const EdgeInsets.all(8), children: [
-      HtmlWidget(body, textStyle: Theme.of(context).textTheme.bodyLarge),
-      const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 80),
-          child: DownloadButton()),
-      // SizedBox(
-      //     width: 400,
-      //     height: 850,
-      //     child: Image(
-      //         image: AssetImage(
-      //             'assets/fld_screenshots/$currentImageIndex.png')))
-    ]);
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Wrap(children: <Widget>[
+                    SizedBox(
+                        width: 1000,
+                        child: HtmlWidget(body,
+                            textStyle: Theme.of(context).textTheme.bodyLarge)),
+                    Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(children: [
+                          Image.asset(width: 400, 'assets/images/me.png'),
+                          const SizedBox(height: 20),
+                          const Text(
+                              'Detective Sherlock: This person above is Ahmad Suleiman')
+                        ]))
+                  ]),
+                ))));
   }
 }
 
@@ -96,7 +87,7 @@ String get body => '''
     crafting innovative solutions. My expertise spans app development, API 
     creation, and data analysis. I thrive on transforming complex problems 
     into elegant software systems. Or, to put it simply, I like to build 
-    stuff!</p>
+    impactful stuff!</p>
     
     <h2>Some of my stuff</h2>
     <ul>
@@ -121,7 +112,7 @@ String get body => '''
       and communication technology (ICT) tools.</li>
     </ul>
     
-    <h2>Contact me</h2>
+    <h2>Contact me (and also check out my other stuff)</h2>
     <ul>
       <li><b>Phone:</b> <a href="tel:+2348138445664">
       +234 813 844 5664</a></li>
@@ -131,13 +122,6 @@ String get body => '''
       https://www.linkedin.com/in/ahmad-suleiman-1a209a246/</a></li>
       <li><b>Github:</b> <a href="https://github.com/Ahmadu-Suleiman">
       https://github.com/Ahmadu-Suleiman</a></li>
-    </ul>
-    
-    <h2>How It Works</h2>
-    <ol>
-      <li>Download the App: Click the download button below to get FLD Floating Dictionary on your device.</li>
-      <li>Install and Open: Follow the simple installation instructions.</li>
-      <li>Start Searching: Use the floating widget to look up words instantly while using other apps.</li>
-    </ol>    
+    </ul>   
 </body>
 ''';
