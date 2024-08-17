@@ -62,10 +62,14 @@ class _HomePageState extends State<HomePage> {
                     ])))),
         bottomSheet: GestureDetector(
             onTap: () => showPolicyDialog(context),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text('Privacy Policies',
-                  style: Theme.of(context).textTheme.bodyLarge)
-            ])));
+            child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Privacy Policies',
+                          style: Theme.of(context).textTheme.bodyLarge)
+                    ]))));
   }
 }
 
