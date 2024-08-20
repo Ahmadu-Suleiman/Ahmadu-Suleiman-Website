@@ -1,13 +1,24 @@
+import 'package:ahmad_suleiman/others/student.dart';
 import 'package:flutter/material.dart';
 
 class CscPersonalityPage extends StatefulWidget {
-  const CscPersonalityPage({super.key});
+  const CscPersonalityPage({super.key, required this.student});
+
+  final Student student;
 
   @override
   State<CscPersonalityPage> createState() => _CscPersonalityPageState();
 }
 
 class _CscPersonalityPageState extends State<CscPersonalityPage> {
+  late final Student student;
+
+  @override
+  void initState() {
+    super.initState();
+    student = widget.student;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: SafeArea(child: Column(children: [banner, body])));
@@ -40,17 +51,41 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
   Widget get body => Row(children: [
         imageDisplay,
         const VerticalDivider(color: Colors.black, indent: 50, endIndent: 50),
-        Expanded(child: Container(color: Colors.orange))
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          text('NAME', '${student.firstname} ${student.lastname}'),
+          text('NICKNAME', student.nickname),
+          text('STATE OF ORIGIN', student.origin),
+          text('HOBBIES', student.hobbies),
+          text('RELATIONSHIP STATUS', student.relationship),
+          text('CLASS CRUSH', student.crush),
+          text('IG HANDLE', student.ig),
+          text('MOST STRESSFUL LEVEL', student.stressfulLevel),
+          text('FAVOURITE COURSE', student.course),
+          text('FAVOURITE LECTURER', student.lecturer),
+          text('IF NOT COMPUTER SCIENCE, WHAT ELSE', student.whatElse),
+          text('FAVOURITE QUOTE', student.quote)
+        ])
       ]);
 
   Widget get imageDisplay => Column(children: [
         Container(
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 2.0),
+                border: Border.all(color: Colors.white, width: 2.0),
                 image: const DecorationImage(
                     image: AssetImage('assets/images/others/kasulogo.png'),
                     fit: BoxFit.cover)),
             width: 400,
             height: 200)
       ]);
+
+  Widget text(String label, String value) => RichText(
+          text: TextSpan(
+              text: '$label: ',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
+              children: <TextSpan>[
+            TextSpan(text: value, style: Theme.of(context).textTheme.bodyMedium)
+          ]));
 }
