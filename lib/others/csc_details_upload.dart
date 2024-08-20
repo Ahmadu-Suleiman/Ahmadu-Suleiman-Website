@@ -5,20 +5,32 @@ import 'package:go_router/go_router.dart';
 class CscDetailsUpload extends StatelessWidget {
   CscDetailsUpload({super.key});
 
-  final TextEditingController firstnameController = TextEditingController();
-  final TextEditingController lastnameController = TextEditingController();
-  final TextEditingController nicknameController = TextEditingController();
-  final TextEditingController dobController = TextEditingController();
-  final TextEditingController originController = TextEditingController();
-  final TextEditingController hobbiesController = TextEditingController();
-  final TextEditingController relationshipController = TextEditingController();
-  final TextEditingController crushController = TextEditingController();
-  final TextEditingController igController = TextEditingController();
-  final TextEditingController stressLevelController = TextEditingController();
-  final TextEditingController courseController = TextEditingController();
-  final TextEditingController lecturerController = TextEditingController();
-  final TextEditingController whatElseController = TextEditingController();
-  final TextEditingController quoteController = TextEditingController();
+  final TextEditingController firstnameController =
+      TextEditingController(text: 'hh');
+  final TextEditingController lastnameController =
+      TextEditingController(text: 'hh');
+  final TextEditingController nicknameController =
+      TextEditingController(text: 'hh');
+  final TextEditingController dobController = TextEditingController(text: 'hh');
+  final TextEditingController originController =
+      TextEditingController(text: 'hh');
+  final TextEditingController hobbiesController =
+      TextEditingController(text: 'hh');
+  final TextEditingController relationshipController =
+      TextEditingController(text: 'hh');
+  final TextEditingController crushController =
+      TextEditingController(text: 'hh');
+  final TextEditingController igController = TextEditingController(text: 'hh');
+  final TextEditingController stressLevelController =
+      TextEditingController(text: 'hh');
+  final TextEditingController courseController =
+      TextEditingController(text: 'hh');
+  final TextEditingController lecturerController =
+      TextEditingController(text: 'hh');
+  final TextEditingController whatElseController =
+      TextEditingController(text: 'hh');
+  final TextEditingController quoteController =
+      TextEditingController(text: 'hh');
 
   final formKey = GlobalKey<FormState>();
 

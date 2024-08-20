@@ -24,48 +24,29 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
     return Scaffold(body: SafeArea(child: Column(children: [banner, body])));
   }
 
-  Widget get banner => Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/others/kasulogo.png',
-                height: 200, width: 200),
-            const SizedBox(width: 20),
-            Column(children: [
-              Text('Faculty of Computing Kaduna State University',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary)),
-              Text('CSC CLASS OF 2024',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      letterSpacing: 1,
-                      color: Theme.of(context).colorScheme.primary)),
-              const SizedBox(height: 20),
-              Text('Computer Scientist of the day!',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontStyle: FontStyle.italic,
-                      color: Theme.of(context).colorScheme.primary))
-            ])
-          ]);
-
-  Widget get body => Row(children: [
-        imageDisplay,
-        const VerticalDivider(color: Colors.black, indent: 50, endIndent: 50),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          text('NAME', '${student.firstname} ${student.lastname}'),
-          text('NICKNAME', student.nickname),
-          text('STATE OF ORIGIN', student.origin),
-          text('HOBBIES', student.hobbies),
-          text('RELATIONSHIP STATUS', student.relationship),
-          text('CLASS CRUSH', student.crush),
-          text('IG HANDLE', student.ig),
-          text('MOST STRESSFUL LEVEL', student.stressfulLevel),
-          text('FAVOURITE COURSE', student.course),
-          text('FAVOURITE LECTURER', student.lecturer),
-          text('IF NOT COMPUTER SCIENCE, WHAT ELSE', student.whatElse),
-          text('FAVOURITE QUOTE', student.quote)
+  Widget get banner =>
+      Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Image.asset('assets/images/others/kasulogo.png',
+            height: 200, width: 200),
+        const SizedBox(width: 20),
+        Column(children: [
+          Text('Faculty of Computing Kaduna State University',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary)),
+          Text('CSC CLASS OF 2024',
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  letterSpacing: 1,
+                  color: Theme.of(context).colorScheme.primary)),
+          const SizedBox(height: 20),
+          Text('Computer Scientist of the day!',
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.primary))
         ])
       ]);
+
+  Widget get body => Row(children: [imageDisplay, details]);
 
   Widget get imageDisplay => Column(children: [
         Container(
@@ -74,8 +55,24 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                 image: const DecorationImage(
                     image: AssetImage('assets/images/others/kasulogo.png'),
                     fit: BoxFit.cover)),
-            width: 400,
-            height: 200)
+            width: 300,
+            height: 400)
+      ]);
+
+  Widget get details =>
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        text('NAME', '${student.firstname} ${student.lastname}'),
+        text('NICKNAME', student.nickname),
+        text('STATE OF ORIGIN', student.origin),
+        text('HOBBIES', student.hobbies),
+        text('RELATIONSHIP STATUS', student.relationship),
+        text('CLASS CRUSH', student.crush),
+        text('IG HANDLE', student.ig),
+        text('MOST STRESSFUL LEVEL', student.stressfulLevel),
+        text('FAVOURITE COURSE', student.course),
+        text('FAVOURITE LECTURER', student.lecturer),
+        text('IF NOT COMPUTER SCIENCE, WHAT ELSE', student.whatElse),
+        text('FAVOURITE QUOTE', student.quote)
       ]);
 
   Widget text(String label, String value) => RichText(

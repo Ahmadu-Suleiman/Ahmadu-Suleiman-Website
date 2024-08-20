@@ -43,13 +43,22 @@ class Routes {
           GoRoute(
               path: 'csc-personality-page',
               builder: (BuildContext context, GoRouterState state) {
-                Student student = state.extra as Student;
-                return Theme(
-                    data: ThemeData(
-                        fontFamily: 'Lato',
-                        colorScheme:
-                            ColorScheme.fromSeed(seedColor: Colors.green)),
-                    child: CscPersonalityPage(student: student));
+                try {
+                  Student student = state.extra as Student;
+                  return Theme(
+                      data: ThemeData(
+                          fontFamily: 'Lato',
+                          colorScheme:
+                              ColorScheme.fromSeed(seedColor: Colors.green)),
+                      child: CscPersonalityPage(student: student));
+                } catch (e) {
+                  return Theme(
+                      data: ThemeData(
+                          fontFamily: 'Lato',
+                          colorScheme:
+                              ColorScheme.fromSeed(seedColor: Colors.green)),
+                      child: CscDetailsUpload());
+                }
               })
         ])
   ]);
