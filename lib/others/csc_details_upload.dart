@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 class CscDetailsUpload extends StatelessWidget {
   CscDetailsUpload({super.key});
 
-  final TextEditingController firstnameController =
-      TextEditingController(text: 'hh');
+  final TextEditingController fullNameController =
+      TextEditingController(text: 'Umar Shehu');
   final TextEditingController lastnameController =
       TextEditingController(text: 'hh');
   final TextEditingController nicknameController =
@@ -16,12 +16,16 @@ class CscDetailsUpload extends StatelessWidget {
       TextEditingController(text: 'hh');
   final TextEditingController hobbiesController =
       TextEditingController(text: 'hh');
+  final TextEditingController workController =
+      TextEditingController(text: 'hh');
   final TextEditingController relationshipController =
       TextEditingController(text: 'hh');
   final TextEditingController crushController =
       TextEditingController(text: 'hh');
   final TextEditingController igController = TextEditingController(text: 'hh');
   final TextEditingController stressLevelController =
+      TextEditingController(text: 'hh');
+  final TextEditingController bestMomentController =
       TextEditingController(text: 'hh');
   final TextEditingController courseController =
       TextEditingController(text: 'hh');
@@ -50,15 +54,16 @@ class CscDetailsUpload extends StatelessWidget {
                   Form(
                       key: formKey,
                       child: Column(children: <Widget>[
-                        input('First name', firstnameController),
-                        input('Last name', lastnameController),
+                        input('Full name', fullNameController),
                         input('Nickname', nicknameController),
                         input('Date Of Birth', dobController),
                         input('Hobbies', hobbiesController),
+                        input('Business/Skills', workController),
                         input('Relationship status', relationshipController),
                         input('Class crush', crushController),
                         input('IG handle', igController),
                         input('Most stressful level', stressLevelController),
+                        input('Best Moment on Campus', bestMomentController),
                         input('Favourite course', courseController),
                         input('Favourite lecturer', lecturerController),
                         input('If not CSC, What else?', whatElseController),
@@ -69,16 +74,17 @@ class CscDetailsUpload extends StatelessWidget {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           Student student = Student(
-                              firstname: firstnameController.text,
-                              lastname: lastnameController.text,
+                              fullName: fullNameController.text,
                               nickname: nicknameController.text,
                               dob: dobController.text,
                               origin: originController.text,
                               hobbies: hobbiesController.text,
+                              work: workController.text,
                               relationship: relationshipController.text,
                               crush: crushController.text,
                               ig: igController.text,
                               stressfulLevel: stressLevelController.text,
+                              bestMoment: bestMomentController.text,
                               course: courseController.text,
                               lecturer: lecturerController.text,
                               whatElse: whatElseController.text,
