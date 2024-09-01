@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class CscDetailsUploadPage extends StatefulWidget {
   const CscDetailsUploadPage({super.key});
@@ -17,7 +18,6 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
           TextEditingController(text: 'Umar Usman'),
       lastnameController = TextEditingController(text: 'hh'),
       nicknameController = TextEditingController(text: 'hh'),
-      dobController = TextEditingController(text: 'hh'),
       originController = TextEditingController(text: 'hh'),
       hobbiesController = TextEditingController(text: 'hh'),
       workController = TextEditingController(text: 'hh'),
@@ -35,6 +35,7 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
   final ImagePicker picker = ImagePicker();
 
   Uint8List? localImage;
+  String? dob;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +56,9 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: <Widget>[
                             addImageWidget,
+                            date,
                             input('Full name', fullNameController),
                             input('Nickname', nicknameController),
-                            input('Date Of Birth', dobController),
                             input('Hobbies', hobbiesController),
                             input('Business/Skills', workController),
                             input(
@@ -79,13 +80,14 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                           backgroundColor: WidgetStatePropertyAll(
                               Theme.of(context).colorScheme.primaryContainer)),
                       onPressed: () {
+                        if (dob == null) return snackBar(context, 'No date?');
                         if (localImage != null) {
                           if (formKey.currentState!.validate()) {
                             Student student = Student(
                                 image: localImage!,
                                 fullName: fullNameController.text,
                                 nickname: nicknameController.text,
-                                dob: dobController.text,
+                                dob: dob!,
                                 origin: originController.text,
                                 hobbies: hobbiesController.text,
                                 work: workController.text,
@@ -143,13 +145,33 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
     setState(() => localImage = image);
   }
 
+  void addDate() async {
+    final date = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2100));
+
+    if (date != null) {
+      setState(() => dob = DateFormat('MMMM dd\'th').format(date));
+    }
+  }
+
   Widget input(String label, final TextEditingController controller) =>
       TextFormField(
           controller: controller,
+          textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(labelText: label),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value == null || value.isEmpty) return 'Write something';
             return null;
           });
+
+  Widget get date => Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton.icon(
+          onPressed: addDate,
+          label: Text(dob == null ? 'Select your Date Of Birth' : dob!),
+          icon: const Icon(Icons.date_range)));
 }

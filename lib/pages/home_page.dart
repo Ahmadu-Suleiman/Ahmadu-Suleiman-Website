@@ -21,37 +21,36 @@ class _HomePageState extends State<HomePage> {
         body: Row(children: [
           navigationRail,
           Expanded(
-            child: ScrollConfiguration(
-                behavior:
-                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Padding(
+              child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
+                  child: Align(
+                      alignment: Alignment.topCenter,
+                      child: SingleChildScrollView(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Wrap(children: <Widget>[
-                            Column(children: [
-                              SizedBox(
-                                  width: 800,
-                                  child: HtmlWidget(body,
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge))
-                            ]),
-                            Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 40),
-                                child: Column(children: [
-                                  Image.asset(
-                                      width: 400, 'assets/images/me.png'),
-                                  const SizedBox(height: 20),
-                                  const Text(
-                                      'Detective Sherlock: This person above is Ahmad Suleiman')
-                                ]))
-                          ]))),
-                )),
-          )
+                          child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Wrap(children: <Widget>[
+                                Column(children: [
+                                  SizedBox(
+                                      width: 800,
+                                      child: HtmlWidget(body,
+                                          textStyle: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge))
+                                ]),
+                                Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 40),
+                                    child: Column(children: [
+                                      Image.asset(
+                                          width: 400, 'assets/images/me.png'),
+                                      const SizedBox(height: 20),
+                                      const Text(
+                                          'Detective Sherlock: This person above is Ahmad Suleiman')
+                                    ]))
+                              ]))))))
         ]),
         bottomSheet: GestureDetector(
             onTap: () => showPolicyDialog(context),

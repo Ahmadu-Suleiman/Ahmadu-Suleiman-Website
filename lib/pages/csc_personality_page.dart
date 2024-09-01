@@ -16,7 +16,6 @@ class CscPersonalityPage extends StatefulWidget {
 class _CscPersonalityPageState extends State<CscPersonalityPage> {
   late final Student student;
   final WidgetsToImageController controllerImage = WidgetsToImageController();
-  bool generating = false;
 
   @override
   void initState() {
@@ -27,49 +26,47 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: generating
-            ? const Center(child: CircularProgressIndicator())
-            : SafeArea(
-                child: SingleChildScrollView(
-                    child: Column(children: [
-                WidgetsToImage(
-                    controller: controllerImage,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: const AssetImage(
-                                    'assets/images/others/background.png'),
-                                fit: BoxFit.cover,
-                                colorFilter: ColorFilter.mode(
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .primary
-                                        .withOpacity(0.2),
-                                    BlendMode.srcIn))),
-                        child: IntrinsicHeight(
-                            child: Container(
-                                color: Theme.of(context).colorScheme.surface,
-                                child: Stack(children: [
-                                  Container(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimaryContainer,
-                                      width: 40,
-                                      height: double.infinity),
-                                  Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [banner, body, bottom])
-                                ]))))),
-                generatorButton
-              ]))));
+        body: SafeArea(
+            child: SingleChildScrollView(
+                child: Column(children: [
+      WidgetsToImage(
+          controller: controllerImage,
+          child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: const AssetImage(
+                          'assets/images/others/background.png'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.2),
+                          BlendMode.srcIn))),
+              child: IntrinsicHeight(
+                  child: Container(
+                      color: Theme.of(context).colorScheme.surface,
+                      child: Stack(children: [
+                        Container(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                            width: 40,
+                            height: double.infinity),
+                        Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [banner, body, bottom])
+                      ]))))),
+      generatorButton
+    ]))));
   }
 
   void saveImage() {
-    setState(() => generating = true);
     controllerImage.capture().then((bytes) {
-      FileSaver.instance
-          .saveFile(name: 'csc-${DateTime.now()}.png', bytes: bytes)
-          .then((_) => setState(() => generating = false));
+      FileSaver.instance.saveFile(
+          name:
+              '${student.fullName} CSC Personality Flyer${DateTime.now()}.png',
+          bytes: bytes);
     });
   }
 
@@ -167,6 +164,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         text('NAME', student.fullName),
         text('NICKNAME', student.nickname),
+        text('DATE OF BIRTH', student.dob),
         text('STATE OF ORIGIN', student.origin),
         text('HOBBIES', student.hobbies),
         text('BUSINESS/SKILLS', student.work),
