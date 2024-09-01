@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,52 +12,47 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentImageIndex = 0;
-  late Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      setState(() => currentImageIndex = (currentImageIndex + 1) % 5);
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             title: const Text('Ahmad Suleiman, Software Engineer'),
             actions: const [DownloadButton()]),
-        body: ScrollConfiguration(
-            behavior:
-                ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Wrap(children: <Widget>[
-                      SizedBox(
-                          width: 1000,
-                          child: HtmlWidget(body,
-                              textStyle:
-                                  Theme.of(context).textTheme.bodyLarge)),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 40),
-                          child: Column(children: [
-                            Image.asset(width: 400, 'assets/images/me.png'),
-                            const SizedBox(height: 20),
-                            const Text(
-                                'Detective Sherlock: This person above is Ahmad Suleiman')
-                          ]))
-                    ])))),
+        body: Row(children: [
+          navigationRail,
+          Expanded(
+            child: ScrollConfiguration(
+                behavior:
+                    ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Wrap(children: <Widget>[
+                            Column(children: [
+                              SizedBox(
+                                  width: 800,
+                                  child: HtmlWidget(body,
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge))
+                            ]),
+                            Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 40),
+                                child: Column(children: [
+                                  Image.asset(
+                                      width: 400, 'assets/images/me.png'),
+                                  const SizedBox(height: 20),
+                                  const Text(
+                                      'Detective Sherlock: This person above is Ahmad Suleiman')
+                                ]))
+                          ]))),
+                )),
+          )
+        ]),
         bottomSheet: GestureDetector(
             onTap: () => showPolicyDialog(context),
             child: Padding(
@@ -71,6 +64,23 @@ class _HomePageState extends State<HomePage> {
                           style: Theme.of(context).textTheme.bodyLarge)
                     ]))));
   }
+
+  Widget get navigationRail => NavigationRail(
+          selectedIndex: 0,
+          onDestinationSelected: (int index) {
+            setState(() {
+              if (index == 1) context.go('/csc-upload-details-page');
+            });
+          },
+          labelType: NavigationRailLabelType.all,
+          destinations: const <NavigationRailDestination>[
+            NavigationRailDestination(
+                icon: Icon(Icons.person),
+                selectedIcon: Icon(Icons.person),
+                label: Text('My profile')),
+            NavigationRailDestination(
+                icon: Icon(Icons.computer), label: Text('CSC'))
+          ]);
 }
 
 class DownloadButton extends StatelessWidget {
@@ -118,7 +128,7 @@ String get body => '''
       <li><b><a href="https://github.com/Ahmadu-Suleiman/AgriAsk">
       AgriAsk:</a></b> An innovative SMS-based agricultural consultation 
       platform designed to empower farmers.</li>
-      <li><b><a href="https://github.com/Ahmadu-Suleiman/AskAll">
+      <li><b><a href="https://youtu.be/BSyg51_xm34?si=8QadQGopTlR5fcdS">
       AskAll:</a></b> A revolutionary platform designed to provide Africans 
       with instant access to Gemini AI through SMS text, overcoming the 
       barriers of poor internet connectivity and limited access to information 
