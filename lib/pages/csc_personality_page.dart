@@ -1,6 +1,7 @@
 import 'package:ahmad_suleiman/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 class CscPersonalityPage extends StatefulWidget {
   const CscPersonalityPage({super.key, required this.student});
@@ -14,6 +15,8 @@ class CscPersonalityPage extends StatefulWidget {
 class _CscPersonalityPageState extends State<CscPersonalityPage> {
   late final Student student;
 
+  final WidgetsToImageController controllerImage = WidgetsToImageController();
+
   @override
   void initState() {
     super.initState();
@@ -25,28 +28,50 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
-                child: Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: const AssetImage(
-                                'assets/images/others/background.png'),
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                                Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.2),
-                                BlendMode.srcIn))),
-                    child: Stack(children: [
-                      Container(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
-                          width: 40),
-                      Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [banner, body, bottom])
-                    ])))));
+                child: Column(children: [
+      WidgetsToImage(
+          controller: controllerImage,
+          child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: const AssetImage(
+                          'assets/images/others/background.png'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.2),
+                          BlendMode.srcIn))),
+              child: IntrinsicHeight(
+                  child: Stack(children: [
+                Container(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    width: 40,
+                    height: double.infinity),
+                Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [banner, body, bottom])
+              ])))),
+      generatorButton
+    ]))));
   }
+
+  Widget get generatorButton => Column(children: [
+        Divider(
+            height: 0,
+            thickness: 4,
+            color: Theme.of(context).colorScheme.primary),
+        const SizedBox(height: 20),
+        ElevatedButton.icon(
+            style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(
+                    Theme.of(context).colorScheme.primaryContainer)),
+            onPressed: () {},
+            label: const Text('Generate'),
+            icon: const Icon(Icons.image)),
+        const SizedBox(height: 20)
+      ]);
 
   Widget get banner => Column(children: [
         Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -107,15 +132,17 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                   width: 400,
                   child: Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Text(student.fullName,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.italic,
-                                  color:
-                                      Theme.of(context).colorScheme.primary))))
+                      child: Center(
+                          child: Text(student.fullName,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.italic,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary)))))
             ]))
       ]);
 

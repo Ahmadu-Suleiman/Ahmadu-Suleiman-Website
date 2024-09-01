@@ -49,7 +49,7 @@ class CscDetailsUploadPage extends StatelessWidget {
                     fontWeight: FontWeight.bold))),
         body: SingleChildScrollView(
             child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(20),
                 child: Column(children: [
                   Form(
                       key: formKey,
@@ -75,7 +75,10 @@ class CscDetailsUploadPage extends StatelessWidget {
                             input('Favourite quote', quoteController)
                           ]))),
                   const SizedBox(height: 20),
-                  ElevatedButton(
+                  ElevatedButton.icon(
+                      style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                              Theme.of(context).colorScheme.primaryContainer)),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           Student student = Student(
@@ -98,7 +101,8 @@ class CscDetailsUploadPage extends StatelessWidget {
                           context.go("/csc-personality-page", extra: student);
                         }
                       },
-                      child: const Text('Submit'))
+                      label: const Text('Upload'),
+                      icon: const Icon(Icons.upload))
                 ]))));
   }
 
