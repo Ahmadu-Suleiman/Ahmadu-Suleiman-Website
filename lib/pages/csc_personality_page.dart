@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:ahmad_suleiman/models/student.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
@@ -17,7 +16,7 @@ class CscPersonalityPage extends StatefulWidget {
 class _CscPersonalityPageState extends State<CscPersonalityPage> {
   late final Student student;
   final WidgetsToImageController controllerImage = WidgetsToImageController();
-  Uint8List? bytes;
+  bool generating = false;
 
   @override
   void initState() {
@@ -28,35 +27,50 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: SingleChildScrollView(
-                child: Column(children: [
-      WidgetsToImage(
-          controller: controllerImage,
-          child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: const AssetImage(
-                          'assets/images/others/background.png'),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.2),
-                          BlendMode.srcIn))),
-              child: IntrinsicHeight(
-                  child: Stack(children: [
-                Container(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    width: 40,
-                    height: double.infinity),
-                Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [banner, body, bottom])
-              ])))),
-      generatorButton
-    ]))));
+        body: generating
+            ? const Center(child: CircularProgressIndicator())
+            : SafeArea(
+                child: SingleChildScrollView(
+                    child: Column(children: [
+                WidgetsToImage(
+                    controller: controllerImage,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: const AssetImage(
+                                    'assets/images/others/background.png'),
+                                fit: BoxFit.cover,
+                                colorFilter: ColorFilter.mode(
+                                    Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withOpacity(0.2),
+                                    BlendMode.srcIn))),
+                        child: IntrinsicHeight(
+                            child: Container(
+                                color: Theme.of(context).colorScheme.surface,
+                                child: Stack(children: [
+                                  Container(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimaryContainer,
+                                      width: 40,
+                                      height: double.infinity),
+                                  Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [banner, body, bottom])
+                                ]))))),
+                generatorButton
+              ]))));
+  }
+
+  void saveImage() {
+    setState(() => generating = true);
+    controllerImage.capture().then((bytes) {
+      FileSaver.instance
+          .saveFile(name: 'csc-${DateTime.now()}.png', bytes: bytes)
+          .then((_) => setState(() => generating = false));
+    });
   }
 
   Widget get generatorButton => Column(children: [
@@ -69,9 +83,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
             style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(
                     Theme.of(context).colorScheme.primaryContainer)),
-            onPressed: () async {
-              bytes = await controllerImage.capture();
-            },
+            onPressed: saveImage,
             label: const Text('Generate'),
             icon: const Icon(Icons.image)),
         const SizedBox(height: 20)

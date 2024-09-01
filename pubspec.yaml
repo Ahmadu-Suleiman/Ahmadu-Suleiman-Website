@@ -43,6 +43,7 @@ dependencies:
   rename_app: ^1.6.1
   widgets_to_image: ^1.0.0
   image_picker: ^1.1.2
+  file_saver: ^0.2.14
 
 dev_dependencies:
   flutter_test:
