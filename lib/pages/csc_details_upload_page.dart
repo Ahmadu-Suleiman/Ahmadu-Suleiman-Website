@@ -1,42 +1,40 @@
 import 'package:ahmad_suleiman/models/student.dart';
+import 'package:ahmad_suleiman/util.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
-class CscDetailsUploadPage extends StatelessWidget {
-  CscDetailsUploadPage({super.key});
+class CscDetailsUploadPage extends StatefulWidget {
+  const CscDetailsUploadPage({super.key});
 
+  @override
+  State<CscDetailsUploadPage> createState() => _CscDetailsUploadPageState();
+}
+
+class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
   final TextEditingController fullNameController =
-      TextEditingController(text: 'Umar Shehu');
-  final TextEditingController lastnameController =
-      TextEditingController(text: 'hh');
-  final TextEditingController nicknameController =
-      TextEditingController(text: 'hh');
-  final TextEditingController dobController = TextEditingController(text: 'hh');
-  final TextEditingController originController =
-      TextEditingController(text: 'hh');
-  final TextEditingController hobbiesController =
-      TextEditingController(text: 'hh');
-  final TextEditingController workController =
-      TextEditingController(text: 'hh');
-  final TextEditingController relationshipController =
-      TextEditingController(text: 'hh');
-  final TextEditingController crushController =
-      TextEditingController(text: 'hh');
-  final TextEditingController igController = TextEditingController(text: 'hh');
-  final TextEditingController stressLevelController =
-      TextEditingController(text: 'hh');
-  final TextEditingController bestMomentController =
-      TextEditingController(text: 'hh');
-  final TextEditingController courseController =
-      TextEditingController(text: 'hh');
-  final TextEditingController lecturerController =
-      TextEditingController(text: 'hh');
-  final TextEditingController whatElseController =
-      TextEditingController(text: 'hh');
-  final TextEditingController quoteController =
-      TextEditingController(text: 'hh');
+          TextEditingController(text: 'Umar Usman'),
+      lastnameController = TextEditingController(text: 'hh'),
+      nicknameController = TextEditingController(text: 'hh'),
+      dobController = TextEditingController(text: 'hh'),
+      originController = TextEditingController(text: 'hh'),
+      hobbiesController = TextEditingController(text: 'hh'),
+      workController = TextEditingController(text: 'hh'),
+      relationshipController = TextEditingController(text: 'hh'),
+      crushController = TextEditingController(text: 'hh'),
+      igController = TextEditingController(text: 'hh'),
+      stressLevelController = TextEditingController(text: 'hh'),
+      bestMomentController = TextEditingController(text: 'hh'),
+      courseController = TextEditingController(text: 'hh'),
+      lecturerController = TextEditingController(text: 'hh'),
+      whatElseController = TextEditingController(text: 'hh'),
+      quoteController = TextEditingController(text: 'hh');
 
   final formKey = GlobalKey<FormState>();
+  final ImagePicker picker = ImagePicker();
+
+  Uint8List? localImage;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +54,7 @@ class CscDetailsUploadPage extends StatelessWidget {
                       child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: <Widget>[
+                            addImageWidget,
                             input('Full name', fullNameController),
                             input('Nickname', nicknameController),
                             input('Date Of Birth', dobController),
@@ -80,30 +79,68 @@ class CscDetailsUploadPage extends StatelessWidget {
                           backgroundColor: WidgetStatePropertyAll(
                               Theme.of(context).colorScheme.primaryContainer)),
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          Student student = Student(
-                              fullName: fullNameController.text,
-                              nickname: nicknameController.text,
-                              dob: dobController.text,
-                              origin: originController.text,
-                              hobbies: hobbiesController.text,
-                              work: workController.text,
-                              relationship: relationshipController.text,
-                              crush: crushController.text,
-                              ig: igController.text,
-                              stressfulLevel: stressLevelController.text,
-                              bestMoment: bestMomentController.text,
-                              course: courseController.text,
-                              lecturer: lecturerController.text,
-                              whatElse: whatElseController.text,
-                              quote: quoteController.text);
+                        if (localImage != null) {
+                          if (formKey.currentState!.validate()) {
+                            Student student = Student(
+                                image: localImage!,
+                                fullName: fullNameController.text,
+                                nickname: nicknameController.text,
+                                dob: dobController.text,
+                                origin: originController.text,
+                                hobbies: hobbiesController.text,
+                                work: workController.text,
+                                relationship: relationshipController.text,
+                                crush: crushController.text,
+                                ig: igController.text,
+                                stressfulLevel: stressLevelController.text,
+                                bestMoment: bestMomentController.text,
+                                course: courseController.text,
+                                lecturer: lecturerController.text,
+                                whatElse: whatElseController.text,
+                                quote: quoteController.text);
 
-                          context.go("/csc-personality-page", extra: student);
+                            context.go("/csc-personality-page", extra: student);
+                          }
+                        } else {
+                          snackBar(context, 'Abeg add image');
                         }
                       },
                       label: const Text('Upload'),
                       icon: const Icon(Icons.upload))
                 ]))));
+  }
+
+  Widget get addImageWidget {
+    if (localImage != null) {
+      return Column(children: [
+        Image(
+            height: 300,
+            image: MemoryImage(localImage!),
+            errorBuilder: (context, error, stackTrace) =>
+                const Icon(Icons.error),
+            fit: BoxFit.fitWidth),
+        const SizedBox(height: 20),
+        TextButton.icon(
+            onPressed: addImage,
+            label: const Text('Replace image'),
+            icon: const Icon(Icons.change_circle))
+      ]);
+    } else {
+      return SizedBox(
+          height: 300,
+          child: Center(
+              child: TextButton.icon(
+                  onPressed: addImage,
+                  label: const Text('Add image'),
+                  icon: const Icon(Icons.upload))));
+    }
+  }
+
+  void addImage() async {
+    Uint8List? image;
+    XFile? file = await picker.pickImage(source: ImageSource.gallery);
+    if (file != null) image = await file.readAsBytes();
+    setState(() => localImage = image);
   }
 
   Widget input(String label, final TextEditingController controller) =>

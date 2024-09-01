@@ -1,4 +1,8 @@
+import 'package:flutter/foundation.dart';
+
 class Student {
+  final Uint8List image;
+
   final String fullName;
 
   final String nickname;
@@ -30,7 +34,8 @@ class Student {
   final String quote;
 
   Student(
-      {required this.fullName,
+      {required this.image,
+      required this.fullName,
       required this.nickname,
       required this.dob,
       required this.origin,

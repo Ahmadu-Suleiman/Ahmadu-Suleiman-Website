@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:ahmad_suleiman/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,8 +16,8 @@ class CscPersonalityPage extends StatefulWidget {
 
 class _CscPersonalityPageState extends State<CscPersonalityPage> {
   late final Student student;
-
   final WidgetsToImageController controllerImage = WidgetsToImageController();
+  Uint8List? bytes;
 
   @override
   void initState() {
@@ -67,7 +69,9 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
             style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(
                     Theme.of(context).colorScheme.primaryContainer)),
-            onPressed: () {},
+            onPressed: () async {
+              bytes = await controllerImage.capture();
+            },
             label: const Text('Generate'),
             icon: const Icon(Icons.image)),
         const SizedBox(height: 20)
@@ -123,8 +127,8 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                           color: Theme.of(context).colorScheme.primary,
                           width: 4),
                       borderRadius: BorderRadius.circular(8),
-                      image: const DecorationImage(
-                          image: AssetImage('assets/images/moi.jpeg'),
+                      image: DecorationImage(
+                          image: MemoryImage(student.image),
                           fit: BoxFit.cover)),
                   width: 300,
                   height: 400),
