@@ -1,11 +1,11 @@
-import 'package:ahmad_suleiman/home_page.dart';
-import 'package:ahmad_suleiman/others/csc_personality_page.dart';
-import 'package:ahmad_suleiman/others/student.dart';
+import 'package:ahmad_suleiman/models/student.dart';
+import 'package:ahmad_suleiman/pages/csc_personality_page.dart';
+import 'package:ahmad_suleiman/pages/home_page.dart';
 import 'package:ahmad_suleiman/policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'others/csc_details_upload.dart';
+import 'pages/csc_details_upload_page.dart';
 
 class Routes {
   static final GoRouter router = GoRouter(routes: <RouteBase>[
@@ -38,7 +38,7 @@ class Routes {
                         fontFamily: 'Lato',
                         colorScheme:
                             ColorScheme.fromSeed(seedColor: Colors.green)),
-                    child: CscDetailsUpload());
+                    child: CscDetailsUploadPage());
               }),
           GoRoute(
               path: 'csc-personality-page',
@@ -57,7 +57,7 @@ class Routes {
                           fontFamily: 'Lato',
                           colorScheme:
                               ColorScheme.fromSeed(seedColor: Colors.green)),
-                      child: CscDetailsUpload());
+                      child: CscDetailsUploadPage());
                 }
               })
         ])

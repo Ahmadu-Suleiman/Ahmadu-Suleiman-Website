@@ -1,4 +1,4 @@
-import 'package:ahmad_suleiman/others/student.dart';
+import 'package:ahmad_suleiman/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
