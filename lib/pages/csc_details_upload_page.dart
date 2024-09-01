@@ -53,22 +53,27 @@ class CscDetailsUploadPage extends StatelessWidget {
                 child: Column(children: [
                   Form(
                       key: formKey,
-                      child: Column(children: <Widget>[
-                        input('Full name', fullNameController),
-                        input('Nickname', nicknameController),
-                        input('Date Of Birth', dobController),
-                        input('Hobbies', hobbiesController),
-                        input('Business/Skills', workController),
-                        input('Relationship status', relationshipController),
-                        input('Class crush', crushController),
-                        input('IG handle', igController),
-                        input('Most stressful level', stressLevelController),
-                        input('Best Moment on Campus', bestMomentController),
-                        input('Favourite course', courseController),
-                        input('Favourite lecturer', lecturerController),
-                        input('If not CSC, What else?', whatElseController),
-                        input('Favourite quote', quoteController)
-                      ])),
+                      child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(children: <Widget>[
+                            input('Full name', fullNameController),
+                            input('Nickname', nicknameController),
+                            input('Date Of Birth', dobController),
+                            input('Hobbies', hobbiesController),
+                            input('Business/Skills', workController),
+                            input(
+                                'Relationship status', relationshipController),
+                            input('Class crush', crushController),
+                            input('IG handle', igController),
+                            input(
+                                'Most stressful level', stressLevelController),
+                            input(
+                                'Best Moment on Campus', bestMomentController),
+                            input('Favourite course', courseController),
+                            input('Favourite lecturer', lecturerController),
+                            input('If not CSC, What else?', whatElseController),
+                            input('Favourite quote', quoteController)
+                          ]))),
                   const SizedBox(height: 20),
                   ElevatedButton(
                       onPressed: () {
@@ -101,6 +106,7 @@ class CscDetailsUploadPage extends StatelessWidget {
       TextFormField(
           controller: controller,
           decoration: InputDecoration(labelText: label),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value == null || value.isEmpty) return 'Write something';
             return null;

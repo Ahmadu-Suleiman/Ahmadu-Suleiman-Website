@@ -24,35 +24,55 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: Stack(children: [
-      Container(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
-          width: 40,
-          height: double.infinity),
-      Column(children: [banner, body, const Spacer(), bottom])
-    ])));
+            child: SingleChildScrollView(
+                child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: const AssetImage(
+                                'assets/images/others/background.png'),
+                            fit: BoxFit.cover,
+                            colorFilter: ColorFilter.mode(
+                                Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withOpacity(0.2),
+                                BlendMode.srcIn))),
+                    child: Stack(children: [
+                      Container(
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          width: 40),
+                      Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [banner, body, bottom])
+                    ])))));
   }
 
-  Widget get banner =>
-      Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Image.asset('assets/images/others/kasulogo.png',
-            height: 200, width: 200),
-        const SizedBox(width: 20),
-        Column(children: [
-          Text('CSC CLASS OF 2024',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  letterSpacing: 1,
-                  color: Theme.of(context).colorScheme.primary)),
-          Text('Faculty of Computing Kaduna State University',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary)),
-          const SizedBox(height: 20),
-          Text('Computer Scientist of the day!',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: Theme.of(context).colorScheme.primary))
-        ])
+  Widget get banner => Column(children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Image.asset('assets/images/others/kasulogo.png',
+              height: 200, width: 200),
+          const SizedBox(width: 20),
+          Column(children: [
+            Text('CSC CLASS OF 2024',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    letterSpacing: 1,
+                    color: Theme.of(context).colorScheme.primary)),
+            Text('Faculty of Computing Kaduna State University',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary)),
+            const SizedBox(height: 20),
+            Text('Computer Scientist of the day!',
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).colorScheme.primary))
+          ])
+        ]),
+        Divider(
+            color: Theme.of(context).colorScheme.primary,
+            indent: 20,
+            endIndent: 20)
       ]);
 
   Widget get body => Row(children: [imageDisplay, details]);
@@ -79,17 +99,23 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                           width: 4),
                       borderRadius: BorderRadius.circular(8),
                       image: const DecorationImage(
-                          image: AssetImage('assets/images/moi.png'),
+                          image: AssetImage('assets/images/moi.jpeg'),
                           fit: BoxFit.cover)),
                   width: 300,
                   height: 400),
-              Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(student.fullName,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          color: Theme.of(context).colorScheme.primary)))
+              SizedBox(
+                  width: 400,
+                  child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Text(student.fullName,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                  color:
+                                      Theme.of(context).colorScheme.primary))))
             ]))
       ]);
 
