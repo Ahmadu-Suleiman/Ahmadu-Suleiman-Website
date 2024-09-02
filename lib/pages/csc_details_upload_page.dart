@@ -15,21 +15,21 @@ class CscDetailsUploadPage extends StatefulWidget {
 
 class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
   final TextEditingController fullNameController =
-          TextEditingController(text: 'Umar Usman'),
-      lastnameController = TextEditingController(text: 'hh'),
-      nicknameController = TextEditingController(text: 'hh'),
-      originController = TextEditingController(text: 'hh'),
-      hobbiesController = TextEditingController(text: 'hh'),
-      workController = TextEditingController(text: 'hh'),
-      relationshipController = TextEditingController(text: 'hh'),
-      crushController = TextEditingController(text: 'hh'),
-      igController = TextEditingController(text: 'hh'),
-      stressLevelController = TextEditingController(text: 'hh'),
-      bestMomentController = TextEditingController(text: 'hh'),
-      courseController = TextEditingController(text: 'hh'),
-      lecturerController = TextEditingController(text: 'hh'),
-      whatElseController = TextEditingController(text: 'hh'),
-      quoteController = TextEditingController(text: 'hh');
+          TextEditingController(text: 'dummy'),
+      lastnameController = TextEditingController(text: 'dummy'),
+      nicknameController = TextEditingController(text: 'dummy'),
+      originController = TextEditingController(text: 'dummy'),
+      hobbiesController = TextEditingController(text: 'dummy'),
+      workController = TextEditingController(text: 'dummy'),
+      relationshipController = TextEditingController(text: 'dummy'),
+      crushController = TextEditingController(text: 'dummy'),
+      igController = TextEditingController(text: 'dummy'),
+      stressLevelController = TextEditingController(text: 'dummy'),
+      bestMomentController = TextEditingController(text: 'dummy'),
+      courseController = TextEditingController(text: 'dummy'),
+      lecturerController = TextEditingController(text: 'dummy'),
+      whatElseController = TextEditingController(text: 'dummy'),
+      quoteController = TextEditingController(text: 'dummy');
 
   final formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
@@ -58,7 +58,8 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                             addImageWidget,
                             date,
                             input('Full name', fullNameController),
-                            input('Nickname', nicknameController),
+                            input('Nickname',
+                                nicknameController), //todo state of origin
                             input('Hobbies', hobbiesController),
                             input('Business/Skills', workController),
                             input(

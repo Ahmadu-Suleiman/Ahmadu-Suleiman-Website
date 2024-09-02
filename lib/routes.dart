@@ -11,35 +11,29 @@ class Routes {
   static final GoRouter router = GoRouter(routes: <RouteBase>[
     GoRoute(
         path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomePage();
-        },
+        builder: (BuildContext context, GoRouterState state) =>
+            const HomePage(),
         routes: <RouteBase>[
           GoRoute(
               path: 'fld-policy',
-              builder: (BuildContext context, GoRouterState state) {
-                return const PolicyPage(name: 'FLD Floating Dictionary');
-              }),
+              builder: (BuildContext context, GoRouterState state) =>
+                  const PolicyPage(name: 'FLD Floating Dictionary')),
           GoRoute(
               path: 'take-note-policy',
-              builder: (BuildContext context, GoRouterState state) {
-                return const PolicyPage(name: 'Take Note');
-              }),
+              builder: (BuildContext context, GoRouterState state) =>
+                  const PolicyPage(name: 'Take Note')),
           GoRoute(
               path: 'hilarity-policy',
-              builder: (BuildContext context, GoRouterState state) {
-                return const PolicyPage(name: 'Hilarity Jokes');
-              }),
+              builder: (BuildContext context, GoRouterState state) =>
+                  const PolicyPage(name: 'Hilarity Jokes')),
           GoRoute(
               path: 'csc-upload-details-page',
-              builder: (BuildContext context, GoRouterState state) {
-                return Theme(
-                    data: ThemeData(
-                        fontFamily: 'Lato',
-                        colorScheme:
-                            ColorScheme.fromSeed(seedColor: Colors.green)),
-                    child: CscDetailsUploadPage());
-              }),
+              builder: (BuildContext context, GoRouterState state) => Theme(
+                  data: ThemeData(
+                      fontFamily: 'Lato',
+                      colorScheme:
+                          ColorScheme.fromSeed(seedColor: Colors.green)),
+                  child: const CscDetailsUploadPage())),
           GoRoute(
               path: 'csc-personality-page',
               builder: (BuildContext context, GoRouterState state) {
@@ -57,7 +51,7 @@ class Routes {
                           fontFamily: 'Lato',
                           colorScheme:
                               ColorScheme.fromSeed(seedColor: Colors.green)),
-                      child: CscDetailsUploadPage());
+                      child: const CscDetailsUploadPage());
                 }
               })
         ])

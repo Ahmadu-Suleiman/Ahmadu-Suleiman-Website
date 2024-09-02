@@ -32,20 +32,20 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
       WidgetsToImage(
           controller: controllerImage,
           child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: const AssetImage(
-                          'assets/images/others/background.png'),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.2),
-                          BlendMode.srcIn))),
+              color: Theme.of(context).colorScheme.surface,
               child: IntrinsicHeight(
                   child: Container(
-                      color: Theme.of(context).colorScheme.surface,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: const AssetImage(
+                                  'assets/images/others/background.png'),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.2),
+                                  BlendMode.srcIn))),
                       child: Stack(children: [
                         Container(
                             color: Theme.of(context)
@@ -75,6 +75,15 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
             height: 0,
             thickness: 4,
             color: Theme.of(context).colorScheme.primary),
+        const Center(
+            child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                    textAlign: TextAlign.center,
+                    "Note: After pressing the generate button below, you'll "
+                    "notice that the screen freezes, it does so because "
+                    "the layout above is actually being painted unto an "
+                    "image file. So, just chill!"))),
         const SizedBox(height: 20),
         ElevatedButton.icon(
             style: ButtonStyle(
@@ -117,14 +126,12 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
 
   Widget get bottom => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: GestureDetector(
-          onTap: () => context.go('/'),
-          child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Text('By Ahmad Suleiman',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    decoration: TextDecoration.underline))
-          ])));
+      child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        TextButton.icon(
+            onPressed: () => context.go('/'),
+            label: const Text('By Ahmad Suleiman'),
+            icon: const Icon(Icons.image))
+      ]));
 
   Widget get imageDisplay => Column(children: [
         Padding(
