@@ -14,22 +14,21 @@ class CscDetailsUploadPage extends StatefulWidget {
 }
 
 class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
-  final TextEditingController fullNameController =
-          TextEditingController(text: 'dummy'),
-      lastnameController = TextEditingController(text: 'dummy'),
-      nicknameController = TextEditingController(text: 'dummy'),
-      originController = TextEditingController(text: 'dummy'),
-      hobbiesController = TextEditingController(text: 'dummy'),
-      workController = TextEditingController(text: 'dummy'),
-      relationshipController = TextEditingController(text: 'dummy'),
-      crushController = TextEditingController(text: 'dummy'),
-      igController = TextEditingController(text: 'dummy'),
-      stressLevelController = TextEditingController(text: 'dummy'),
-      bestMomentController = TextEditingController(text: 'dummy'),
-      courseController = TextEditingController(text: 'dummy'),
-      lecturerController = TextEditingController(text: 'dummy'),
-      whatElseController = TextEditingController(text: 'dummy'),
-      quoteController = TextEditingController(text: 'dummy');
+  final TextEditingController fullNameController = TextEditingController(),
+      lastnameController = TextEditingController(),
+      nicknameController = TextEditingController(),
+      originController = TextEditingController(),
+      hobbiesController = TextEditingController(),
+      workController = TextEditingController(),
+      relationshipController = TextEditingController(),
+      crushController = TextEditingController(),
+      igController = TextEditingController(),
+      stressLevelController = TextEditingController(),
+      bestMomentController = TextEditingController(),
+      courseController = TextEditingController(),
+      lecturerController = TextEditingController(),
+      whatElseController = TextEditingController(),
+      quoteController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
   final ImagePicker picker = ImagePicker();
@@ -113,31 +112,27 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                 ]))));
   }
 
-  Widget get addImageWidget {
-    if (localImage != null) {
-      return Column(children: [
-        Image(
-            height: 300,
-            image: MemoryImage(localImage!),
-            errorBuilder: (context, error, stackTrace) =>
-                const Icon(Icons.error),
-            fit: BoxFit.fitWidth),
-        const SizedBox(height: 20),
-        TextButton.icon(
-            onPressed: addImage,
-            label: const Text('Replace image'),
-            icon: const Icon(Icons.change_circle))
-      ]);
-    } else {
-      return SizedBox(
+  Widget get addImageWidget => localImage != null
+      ? Column(children: [
+          Image(
+              height: 300,
+              image: MemoryImage(localImage!),
+              errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.error),
+              fit: BoxFit.fitWidth),
+          const SizedBox(height: 20),
+          TextButton.icon(
+              onPressed: addImage,
+              label: const Text('Replace image'),
+              icon: const Icon(Icons.change_circle))
+        ])
+      : SizedBox(
           height: 300,
           child: Center(
               child: TextButton.icon(
                   onPressed: addImage,
                   label: const Text('Add image'),
                   icon: const Icon(Icons.upload))));
-    }
-  }
 
   void addImage() async {
     Uint8List? image;
