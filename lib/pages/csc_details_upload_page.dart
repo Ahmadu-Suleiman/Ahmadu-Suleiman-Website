@@ -60,6 +60,7 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                             input('Nickname',
                                 nicknameController), //todo state of origin
                             input('Hobbies', hobbiesController),
+                            input('State of origin', originController),
                             input('Business/Skills', workController),
                             input(
                                 'Relationship status', relationshipController),
@@ -158,6 +159,7 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
           controller: controller,
           textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(labelText: label),
+          textInputAction: TextInputAction.next,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value == null || value.isEmpty) return 'Write something';

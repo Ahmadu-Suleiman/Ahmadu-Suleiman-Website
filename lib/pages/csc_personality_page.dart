@@ -29,34 +29,42 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Column(children: [
-      WidgetsToImage(
-          controller: controllerImage,
-          child: Container(
-              color: Theme.of(context).colorScheme.surface,
-              child: IntrinsicHeight(
+      Align(
+          alignment: Alignment.topLeft,
+          child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: WidgetsToImage(
+                  controller: controllerImage,
                   child: Container(
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: const AssetImage(
-                                  'assets/images/others/background.png'),
-                              fit: BoxFit.cover,
-                              colorFilter: ColorFilter.mode(
-                                  Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.2),
-                                  BlendMode.srcIn))),
-                      child: Stack(children: [
-                        Container(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
-                            width: 40,
-                            height: double.infinity),
-                        Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [banner, body, bottom])
-                      ]))))),
+                          color: Theme.of(context).colorScheme.surface,
+                          border: Border.all(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 1)),
+                      child: IntrinsicHeight(
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: const AssetImage(
+                                          'assets/images/others/background.png'),
+                                      fit: BoxFit.cover,
+                                      colorFilter: ColorFilter.mode(
+                                          Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                              .withOpacity(0.2),
+                                          BlendMode.srcIn))),
+                              child: Stack(children: [
+                                Container(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                    width: 60,
+                                    height: double.infinity),
+                                Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [banner, body, bottom]),
+                              ]))))))),
       generatorButton
     ]))));
   }
@@ -65,7 +73,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
     controllerImage.capture().then((bytes) {
       FileSaver.instance.saveFile(
           name:
-              '${student.fullName} CSC Personality Flyer${DateTime.now()}.png',
+              '${student.fullName} CSC Personality Flyer ${DateTime.now()}.png',
           bytes: bytes);
     });
   }
@@ -95,7 +103,9 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
         const SizedBox(height: 20)
       ]);
 
-  Widget get banner => Column(children: [
+  Widget get banner => Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(children: [
         Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Image.asset('assets/images/others/kasulogo.png',
               height: 200, width: 200),
@@ -120,7 +130,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
             color: Theme.of(context).colorScheme.primary,
             indent: 20,
             endIndent: 20)
-      ]);
+      ]));
 
   Widget get body => Row(children: [imageDisplay, details]);
 
@@ -154,6 +164,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                       padding: const EdgeInsets.all(8),
                       child: Center(
                           child: Text(student.fullName,
+                              textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge
@@ -162,7 +173,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                                       fontStyle: FontStyle.italic,
                                       color: Theme.of(context)
                                           .colorScheme
-                                          .primary)))))
+                                          .secondary)))))
             ]))
       ]);
 

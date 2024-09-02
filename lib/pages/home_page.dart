@@ -19,27 +19,28 @@ class _HomePageState extends State<HomePage> {
             title: const Text('Ahmad Suleiman, Software Engineer'),
             actions: const [DownloadButton()]),
         body: Row(children: [
-          navigationRail,
+          if (isNotPhoneWidth) navigationRail,
           Expanded(
               child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context)
                       .copyWith(scrollbars: false),
                   child: Align(
-                      alignment: Alignment.topCenter,
+                      alignment: isTextDirectionLeft
+                          ? Alignment.topLeft
+                          : Alignment.topRight,
                       child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
                           padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Wrap(children: <Widget>[
-                                Column(children: [
-                                  SizedBox(
-                                      width: 800,
-                                      child: HtmlWidget(body,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge))
-                                ]),
+                                SizedBox(
+                                    width: 800,
+                                    child: HtmlWidget(body,
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge)),
                                 Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 40),
@@ -63,6 +64,11 @@ class _HomePageState extends State<HomePage> {
                           style: Theme.of(context).textTheme.bodyLarge)
                     ]))));
   }
+
+  bool get isNotPhoneWidth => MediaQuery.sizeOf(context).width > 800;
+
+  bool get isTextDirectionLeft =>
+      Directionality.of(context) == TextDirection.ltr;
 
   Widget get navigationRail => NavigationRail(
           selectedIndex: 0,
