@@ -41,41 +41,45 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                           border: Border.all(
                               color: Theme.of(context).colorScheme.primary,
                               width: 1)),
-                      child: IntrinsicHeight(
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: const AssetImage(
-                                          'assets/images/others/background.png'),
-                                      fit: BoxFit.cover,
-                                      colorFilter: ColorFilter.mode(
-                                          Theme.of(context)
-                                              .colorScheme
-                                              .primary
-                                              .withOpacity(0.2),
-                                          BlendMode.srcIn))),
-                              child: Stack(children: [
-                                Container(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
-                                    width: 60,
-                                    height: double.infinity),
-                                Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [banner, body, bottom]),
-                              ]))))))),
+                      child: IntrinsicWidth(
+                        child: IntrinsicHeight(
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: const AssetImage(
+                                            'assets/images/others/background.png'),
+                                        fit: BoxFit.cover,
+                                        colorFilter: ColorFilter.mode(
+                                            Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withOpacity(0.2),
+                                            BlendMode.srcIn))),
+                                child: Stack(children: [
+                                  Container(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimaryContainer,
+                                      width: 60,
+                                      height: double.infinity),
+                                  Column(children: [
+                                    banner,
+                                    const Divider(indent: 20, endIndent: 20),
+                                    body,
+                                    bottom
+                                  ])
+                                ]))),
+                      ))))),
       generatorButton
     ]))));
   }
 
   void saveImage() {
-    controllerImage.capture().then((bytes) {
-      FileSaver.instance.saveFile(
-          name:
-              '${student.fullName} CSC Personality Flyer ${DateTime.now()}.png',
-          bytes: bytes);
-    });
+    controllerImage.capture().then((bytes) => FileSaver.instance.saveFile(
+        name: '${student.fullName} CSC Personality Flyer ${DateTime.now()}',
+        bytes: bytes,
+        ext: '.png',
+        mimeType: MimeType.png));
   }
 
   Widget get generatorButton => Column(children: [
@@ -88,7 +92,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                 padding: EdgeInsets.all(20),
                 child: Text(
                     textAlign: TextAlign.center,
-                    "Note: After pressing the generate button below, you'll "
+                    "Note: After pressing the generate button below, you might "
                     "notice that the screen freezes, it does so because "
                     "the layout above is actually being painted unto an "
                     "image file. So, just chill!"))),
@@ -105,34 +109,30 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
 
   Widget get banner => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(children: [
-        Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Image.asset('assets/images/others/kasulogo.png',
-              height: 200, width: 200),
-          const SizedBox(width: 20),
-          Column(children: [
-            Text('CSC CLASS OF 2024',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    letterSpacing: 1,
-                    color: Theme.of(context).colorScheme.primary)),
-            Text('Faculty of Computing Kaduna State University',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary)),
-            const SizedBox(height: 20),
-            Text('Computer Scientist of the day!',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontStyle: FontStyle.italic,
-                    color: Theme.of(context).colorScheme.primary))
-          ])
-        ]),
-        Divider(
-            color: Theme.of(context).colorScheme.primary,
-            indent: 20,
-            endIndent: 20)
+      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Image.asset('assets/images/others/kasulogo.png',
+            height: 200, width: 200),
+        const SizedBox(width: 20),
+        Column(children: [
+          Text('CSC CLASS OF 2024',
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  letterSpacing: 1,
+                  color: Theme.of(context).colorScheme.primary)),
+          Text('Faculty of Computing Kaduna State University',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.primary)),
+          Divider(height: 30, color: Theme.of(context).colorScheme.primary),
+          Text('Computer Scientist of the day!',
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.primary))
+        ])
       ]));
 
-  Widget get body => Row(children: [imageDisplay, details]);
+  Widget get body => Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [imageDisplay, details]);
 
   Widget get bottom => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
