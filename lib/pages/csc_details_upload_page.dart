@@ -57,8 +57,7 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                             addImageWidget,
                             date,
                             input('Full name', fullNameController),
-                            input('Nickname',
-                                nicknameController), //todo state of origin
+                            input('Nickname', nicknameController),
                             input('Hobbies', hobbiesController),
                             input('State of origin', originController),
                             input('Business/Skills', workController),
@@ -161,10 +160,7 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
           decoration: InputDecoration(labelText: label),
           textInputAction: TextInputAction.next,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (value) {
-            if (value == null || value.isEmpty) return 'Write something';
-            return null;
-          });
+          validator: (value) => value!.isEmpty ? 'Write something' : null);
 
   Widget get date => Padding(
       padding: const EdgeInsets.all(8.0),
