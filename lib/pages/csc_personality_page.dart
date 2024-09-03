@@ -53,7 +53,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                                             Theme.of(context)
                                                 .colorScheme
                                                 .primary
-                                                .withOpacity(0.2),
+                                                .withOpacity(0.1),
                                             BlendMode.srcIn))),
                                 child: Stack(children: [
                                   Container(
