@@ -125,6 +125,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
           Text('Computer Scientist of the day!',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                   fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.primary))
         ])
       ]));
