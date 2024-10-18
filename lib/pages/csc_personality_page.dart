@@ -1,8 +1,9 @@
-import 'package:ahmad_suleiman/models/student.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:widgets_to_image/widgets_to_image.dart';
+import 'package:screenshot/screenshot.dart';
+
+import '../models/student.dart';
 
 class CscPersonalityPage extends StatefulWidget {
   const CscPersonalityPage({super.key, required this.student});
@@ -15,7 +16,7 @@ class CscPersonalityPage extends StatefulWidget {
 
 class _CscPersonalityPageState extends State<CscPersonalityPage> {
   late final Student student;
-  final WidgetsToImageController controllerImage = WidgetsToImageController();
+  final controllerImage = ScreenshotController();
 
   @override
   void initState() {
@@ -37,6 +38,23 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
     ]))));
   }
 
+  void preview() {
+    controllerImage.capture().then((bytes) {
+      if (mounted) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                    title: Text('Flyer preview'),
+                    content: Image.memory(bytes!),
+                    actions: [
+                      TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text('Cancel'))
+                    ]));
+      }
+    });
+  }
+
   void saveImage() {
     controllerImage.capture().then((bytes) => FileSaver.instance.saveFile(
         name: '${student.fullName} CSC Personality Flyer ${DateTime.now()}',
@@ -45,7 +63,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
         mimeType: MimeType.png));
   }
 
-  Widget get flyerWidget => WidgetsToImage(
+  Widget get flyerWidget => Screenshot(
       controller: controllerImage,
       child: Container(
           decoration: BoxDecoration(
@@ -91,18 +109,29 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                 padding: EdgeInsets.all(20),
                 child: Text(
                     textAlign: TextAlign.center,
-                    "Note: After pressing the generate button below, you might "
-                    "notice that the screen freezes, it does so because "
-                    "the layout above is actually being painted unto an "
-                    "image file. So, just chill!"))),
+                    "Please note: After clicking 'Generate', there may be a "
+                    "brief pause while your flyer is created. Once ready, "
+                    "it will be displayed. If you encounter any issues, try "
+                    "clicking 'Preview' for a viewable version you can "
+                    "screenshot."))),
         const SizedBox(height: 20),
-        ElevatedButton.icon(
-            style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(
-                    Theme.of(context).colorScheme.primaryContainer)),
-            onPressed: saveImage,
-            label: const Text('Generate'),
-            icon: const Icon(Icons.image)),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          ElevatedButton.icon(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                      Theme.of(context).colorScheme.primaryContainer)),
+              onPressed: preview,
+              label: const Text('Preview'),
+              icon: const Icon(Icons.image)),
+          const SizedBox(width: 20),
+          ElevatedButton.icon(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                      Theme.of(context).colorScheme.primaryContainer)),
+              onPressed: saveImage,
+              label: const Text('Generate'),
+              icon: const Icon(Icons.download))
+        ]),
         const SizedBox(height: 20)
       ]);
 
