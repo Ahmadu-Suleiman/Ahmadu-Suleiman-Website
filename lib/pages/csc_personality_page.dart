@@ -32,43 +32,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
       Align(
           alignment: Alignment.topLeft,
           child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: WidgetsToImage(
-                  controller: controllerImage,
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surface,
-                          border: Border.all(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 1)),
-                      child: IntrinsicWidth(
-                          child: IntrinsicHeight(
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: const AssetImage(
-                                              'assets/images/others/background.png'),
-                                          fit: BoxFit.cover,
-                                          colorFilter: ColorFilter.mode(
-                                              Theme.of(context)
-                                                  .colorScheme
-                                                  .primary
-                                                  .withOpacity(0.1),
-                                              BlendMode.srcIn))),
-                                  child: Stack(children: [
-                                    Container(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onPrimaryContainer,
-                                        width: 60,
-                                        height: double.infinity),
-                                    Column(children: [
-                                      banner,
-                                      const Divider(indent: 20, endIndent: 20),
-                                      body,
-                                      bottom
-                                    ])
-                                  ])))))))),
+              scrollDirection: Axis.horizontal, child: flyerWidget)),
       generatorButton
     ]))));
   }
@@ -80,6 +44,42 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
         ext: '.png',
         mimeType: MimeType.png));
   }
+
+  Widget get flyerWidget => WidgetsToImage(
+      controller: controllerImage,
+      child: Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.primary, width: 1)),
+          child: IntrinsicWidth(
+              child: IntrinsicHeight(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: const AssetImage(
+                                  'assets/images/others/background.png'),
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.1),
+                                  BlendMode.srcIn))),
+                      child: Stack(children: [
+                        Container(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                            width: 60,
+                            height: double.infinity),
+                        Column(children: [
+                          banner,
+                          const Divider(indent: 20, endIndent: 20),
+                          body,
+                          bottom
+                        ])
+                      ]))))));
 
   Widget get generatorButton => Column(children: [
         Divider(
