@@ -1,4 +1,4 @@
-import 'package:ahmad_suleiman/routes.dart';
+import 'package:ahmadu_suleiman/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {

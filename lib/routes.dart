@@ -1,36 +1,35 @@
-import 'package:ahmad_suleiman/models/student.dart';
-import 'package:ahmad_suleiman/pages/csc_personality_page.dart';
-import 'package:ahmad_suleiman/pages/home_page.dart';
-import 'package:ahmad_suleiman/policy_page.dart';
+import 'package:ahmadu_suleiman/pages/csc_personality_page.dart';
+import 'package:ahmadu_suleiman/pages/home_page.dart';
+import 'package:ahmadu_suleiman/pages/policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'models/student.dart';
 import 'pages/csc_details_upload_page.dart';
 
 class Routes {
   static final GoRouter router = GoRouter(
-      onException: (_, GoRouterState state, GoRouter router) => router.go('/'),
+      onException: (_, state, router) => router.go('/'),
       routes: <RouteBase>[
         GoRoute(
             path: '/',
-            builder: (BuildContext context, GoRouterState state) =>
-                const HomePage(),
+            builder: (context, state) => const HomePage(),
             routes: <RouteBase>[
               GoRoute(
                   path: 'fld-policy',
-                  builder: (BuildContext context, GoRouterState state) =>
+                  builder: (context, state) =>
                       const PolicyPage(name: 'FLD Floating Dictionary')),
               GoRoute(
                   path: 'take-note-policy',
-                  builder: (BuildContext context, GoRouterState state) =>
+                  builder: (context, state) =>
                       const PolicyPage(name: 'Take Note')),
               GoRoute(
                   path: 'hilarity-policy',
-                  builder: (BuildContext context, GoRouterState state) =>
+                  builder: (context, state) =>
                       const PolicyPage(name: 'Hilarity Jokes')),
               GoRoute(
                   path: 'csc-upload-details-page',
-                  builder: (BuildContext context, GoRouterState state) => Theme(
+                  builder: (context, state) => Theme(
                       data: ThemeData(
                           fontFamily: 'Lato',
                           colorScheme:
@@ -38,7 +37,7 @@ class Routes {
                       child: const CscDetailsUploadPage())),
               GoRoute(
                   path: 'csc-personality-page',
-                  builder: (BuildContext context, GoRouterState state) {
+                  builder: (context, state) {
                     try {
                       Student student = state.extra as Student;
                       return Theme(

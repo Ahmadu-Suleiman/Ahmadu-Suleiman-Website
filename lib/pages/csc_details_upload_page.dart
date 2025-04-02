@@ -1,10 +1,11 @@
-import 'package:ahmad_suleiman/models/student.dart';
-import 'package:ahmad_suleiman/util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+
+import '../models/student.dart';
+import '../util.dart';
 
 class CscDetailsUploadPage extends StatefulWidget {
   const CscDetailsUploadPage({super.key});

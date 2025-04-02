@@ -151,6 +151,9 @@ String get body => '''
       <li><b>Github:</b> <a href="https://github.com/Ahmadu-Suleiman">
       https://github.com/Ahmadu-Suleiman</a></li>
     </ul>   
+    
+    <h2><a target="_blank" href="https://linktr.ee/ahmadumeta4">
+    Absolutely all my stuff!🡭</a></h2>
 </body>
 ''';
 
