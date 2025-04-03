@@ -126,13 +126,13 @@ String get body => '''
       <li><b><a href="https://play.google.com/store/apps/details?id=com.meta4projects.takenote">
       Take Note:</a></b> A note app that allows you to create subsections 
       within notes for better organization.</li>
+      <li><b><a href="https://medium.com/@ahmadumeta4.1/agriask-my-award-winning-innovative-solution-for-africas-talking-agritech-hackathon-d426c17f183b">
+      AgriAsk:</a></b> An innovative SMS-based agricultural consultation 
+      platform designed to empower farmers.</li>
       <li><b><a href="https://github.com/Ahmadu-Suleiman/WiPy">
       WiPy:</a></b> A web app that turns your computer into a local storage 
       repository that other devices on the same local network can connect to 
       and download files from.</li>
-      <li><b><a href="https://github.com/Ahmadu-Suleiman/AgriAsk">
-      AgriAsk:</a></b> An innovative SMS-based agricultural consultation 
-      platform designed to empower farmers.</li>
       <li><b><a href="https://youtu.be/BSyg51_xm34?si=8QadQGopTlR5fcdS">
       AskAll:</a></b> A revolutionary platform designed to provide Africans 
       with instant access to Gemini AI through SMS text, overcoming the 
