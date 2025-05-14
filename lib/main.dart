@@ -13,9 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
         title: 'Ahmad Suleiman',
         theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
             fontFamily: 'Lato',
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown)),
         darkTheme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
             fontFamily: 'Lato',
             colorScheme: ColorScheme.fromSeed(
                 seedColor: Colors.brown, brightness: Brightness.dark)),
