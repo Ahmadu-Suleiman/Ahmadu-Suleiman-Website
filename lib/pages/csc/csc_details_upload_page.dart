@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/student.dart';
-import '../../util.dart';
+import '../../utils/util.dart';
 
 class CscDetailsUploadPage extends StatefulWidget {
   const CscDetailsUploadPage({super.key});

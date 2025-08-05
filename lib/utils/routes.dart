@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'models/student.dart';
-import 'pages/csc/csc_details_upload_page.dart';
+import '../models/student.dart';
+import '../pages/csc/csc_details_upload_page.dart';
 
 class Routes {
   const Routes._();
@@ -37,11 +37,6 @@ class Routes {
                   name: takeNotePolicy,
                   builder: (context, state) =>
                       const PolicyPage(name: 'Take Note')),
-              GoRoute(
-                  path: hilarityPolicy,
-                  name: hilarityPolicy,
-                  builder: (context, state) =>
-                      const PolicyPage(name: 'Hilarity Jokes')),
               GoRoute(
                   path: cscUploadDetailsPage,
                   name: cscUploadDetailsPage,

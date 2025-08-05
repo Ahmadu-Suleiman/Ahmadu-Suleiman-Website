@@ -1,4 +1,4 @@
-import 'package:ahmadu_suleiman/routes.dart';
+import 'package:ahmadu_suleiman/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

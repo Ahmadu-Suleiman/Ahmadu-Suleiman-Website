@@ -1,11 +1,14 @@
+import 'dart:js_interop';
+
 import 'package:ahmadu_suleiman/gen/assets.gen.dart';
-import 'package:ahmadu_suleiman/routes.dart';
 import 'package:ahmadu_suleiman/utils/extensions.dart';
+import 'package:ahmadu_suleiman/utils/routes.dart';
+import 'package:ahmadu_suleiman/utils/util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:web/web.dart' as web;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,29 +38,25 @@ class _HomePageState extends State<HomePage> {
                           : Alignment.topRight,
                       child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Wrap(children: [
-                                SizedBox(
-                                    width: 800,
-                                    child: HtmlWidget(body,
-                                        textStyle: context.sentenceStyle
-                                            ?.withColor(context
-                                                .colorScheme.onSurface))),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 40),
-                                    child: Column(spacing: 20, children: [
-                                      Assets.images.me.image(width: 400),
-                                      Text(
-                                          'Detective Sherlock: This person above is Ahmad Suleiman',
-                                          style: context.sentenceStyle
-                                              ?.withColor(context
-                                                  .colorScheme.onSurface))
-                                    ]))
-                              ]))))))
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child:
+                              Wrap(alignment: WrapAlignment.center, children: [
+                            SizedBox(
+                                width: 800,
+                                child: HtmlWidget(body,
+                                    textStyle: context.sentenceStyle?.withColor(
+                                        context.colorScheme.onSurface))),
+                            Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 40),
+                                child: Column(spacing: 20, children: [
+                                  Assets.images.me.image(width: 400),
+                                  Text(
+                                      'PS: This person above is Ahmad Suleiman',
+                                      style: context.sentenceStyle?.withColor(
+                                          context.colorScheme.onSurface))
+                                ]))
+                          ])))))
         ]));
   }
 
@@ -91,35 +90,46 @@ class _HomePageState extends State<HomePage> {
       child: TextButton.icon(
           style: TextButton.styleFrom(
               backgroundColor: context.colorScheme.inversePrimary),
-          onPressed: openGooglePlayLink,
-          label: Text('My Apps',
+          onPressed: downloadResume,
+          label: Text('My Résumé',
               style:
                   context.labelStyle?.withColor(context.colorScheme.onSurface)),
-          icon: const FaIcon(FontAwesomeIcons.googlePlay)));
+          icon: const Icon(Icons.file_download)));
 
   void showPolicyDialog() async => showDialog<void>(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            title: Text('Privacy Policies',
-                style: context.titleStyle
-                    ?.withColor(context.colorScheme.onSurface)),
-            content: SingleChildScrollView(
-                child: Column(children: [
-              TextButton(
-                  onPressed: () => context.pushNamed(Routes.fldPolicy),
-                  child: const Text('FLD Floating Dictionary')),
-              TextButton(
-                  onPressed: () => context.pushNamed(Routes.takeNotePolicy),
-                  child: const Text('Take Note')),
-              TextButton(
-                  onPressed: () => context.pushNamed(Routes.hilarityPolicy),
-                  child: const Text('Hilarity Jokes'))
-            ])));
-      });
+      builder: (BuildContext context) => AlertDialog(
+          title: Text('Privacy Policies',
+              style:
+                  context.titleStyle?.withColor(context.colorScheme.onSurface)),
+          content: SingleChildScrollView(
+              child: Column(children: [
+            TextButton(
+                onPressed: () => context.pushNamed(Routes.fldPolicy),
+                child: const Text('FLD Floating Dictionary')),
+            TextButton(
+                onPressed: () => context.pushNamed(Routes.takeNotePolicy),
+                child: const Text('Take Note'))
+          ]))));
 
-  void openGooglePlayLink() => launchUrl(Uri.parse(
-      'https://play.google.com/store/apps/dev?id=5382562347439530585'));
+  void downloadResume() async {
+    try {
+      final data = await rootBundle.load(Assets.files.ahmadSuleimanCv);
+      final bytes = data.buffer.asUint8List();
+
+      final blob = web.Blob([bytes.toJS].toJS);
+      final url = web.URL.createObjectURL(blob);
+
+      web.HTMLAnchorElement()
+        ..href = url
+        ..download = 'Ahmad_Suleiman_CV.pdf'
+        ..click();
+
+      web.URL.revokeObjectURL(url);
+    } catch (e) {
+      if (mounted) snackBar(context, 'Error downloading CV: $e');
+    }
+  }
 
   String get body => '''
 <body>
@@ -212,7 +222,7 @@ class _HomePageState extends State<HomePage> {
             nested subsections and hierarchical structure, designed for complex 
             thinking and project management.</p>
             
-            <h4><a href="https://github.com/Ahmadu-Suleiman/WiPy" target="_blank">Wily</a></h4>
+            <h4><a href="https://github.com/Ahmadu-Suleiman/WiPy" target="_blank">WiPy</a></h4>
             <p>A minimalist web application that transforms any computer into 
             a local-network file server, enabling instant file sharing within 
             Wi-Fi networks without cloud dependencies or external devices.</p>

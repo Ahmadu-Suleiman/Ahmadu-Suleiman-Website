@@ -11,6 +11,16 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsFilesGen {
+  const $AssetsFilesGen();
+
+  /// File path: assets/files/ahmad_suleiman_cv.pdf
+  String get ahmadSuleimanCv => 'assets/files/ahmad_suleiman_cv.pdf';
+
+  /// List of all assets
+  List<String> get values => [ahmadSuleimanCv];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -45,6 +55,7 @@ class $AssetsImagesOthersGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsFilesGen files = $AssetsFilesGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
