@@ -1,3 +1,5 @@
+import 'package:ahmadu_suleiman/gen/assets.gen.dart';
+import 'package:ahmadu_suleiman/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
             title: const Text('Ahmad Suleiman, Software Engineer'),
-            actions: const [DownloadButton()]),
+            actions: [downloadButton]),
         body: Row(children: [
           if (isNotPhoneWidth) navigationRail,
           Expanded(
@@ -34,35 +36,36 @@ class _HomePageState extends State<HomePage> {
                           child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
-                              child: Wrap(children: <Widget>[
+                              child: Wrap(children: [
                                 SizedBox(
                                     width: 800,
                                     child: HtmlWidget(body,
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge)),
+                                        textStyle: context.sentenceStyle
+                                            ?.withColor(context
+                                                .colorScheme.onSurface))),
                                 Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 40),
-                                    child: Column(children: [
-                                      Image.asset(
-                                          width: 400, 'assets/images/me.png'),
-                                      const SizedBox(height: 20),
-                                      const Text(
-                                          'Detective Sherlock: This person above is Ahmad Suleiman')
+                                    child: Column(spacing: 20, children: [
+                                      Assets.images.me.image(width: 400),
+                                      Text(
+                                          'Detective Sherlock: This person above is Ahmad Suleiman',
+                                          style: context.sentenceStyle
+                                              ?.withColor(context
+                                                  .colorScheme.onSurface))
                                     ]))
                               ]))))))
         ]),
         bottomSheet: GestureDetector(
-            onTap: () => showPolicyDialog(context),
+            onTap: showPolicyDialog,
             child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Privacy Policies',
-                          style: Theme.of(context).textTheme.bodyLarge)
-                    ]))));
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Text('Privacy Policies',
+                      style: context.actionStyle
+                          ?.withColor(context.colorScheme.onSurface))
+                ]))));
   }
 
   bool get isNotPhoneWidth => MediaQuery.sizeOf(context).width > 800;
@@ -72,11 +75,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget get navigationRail => NavigationRail(
           selectedIndex: 0,
-          onDestinationSelected: (int index) {
-            setState(() {
-              if (index == 1) context.go('/csc-upload-details-page');
-            });
-          },
+          onDestinationSelected: (int index) => setState(() {
+                if (index == 1) context.go('/csc-upload-details-page');
+              }),
           labelType: NavigationRailLabelType.all,
           destinations: const <NavigationRailDestination>[
             NavigationRailDestination(
@@ -86,30 +87,43 @@ class _HomePageState extends State<HomePage> {
             NavigationRailDestination(
                 icon: Icon(Icons.computer), label: Text('CSC'))
           ]);
-}
 
-class DownloadButton extends StatelessWidget {
-  const DownloadButton({super.key});
+  Widget get downloadButton => Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton.icon(
+          style: TextButton.styleFrom(
+              backgroundColor: context.colorScheme.inversePrimary),
+          onPressed: openGooglePlayLink,
+          label: Text('My Apps',
+              style:
+                  context.labelStyle?.withColor(context.colorScheme.onSurface)),
+          icon: const FaIcon(FontAwesomeIcons.googlePlay)));
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextButton.icon(
-            style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                    Theme.of(context).colorScheme.inversePrimary)),
-            onPressed: () => openGooglePlayLink(),
-            label:
-                Text('My Apps', style: Theme.of(context).textTheme.labelLarge),
-            icon: const FaIcon(FontAwesomeIcons.googlePlay)));
-  }
-}
+  void showPolicyDialog() async => showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            title: Text('Privacy Policies',
+                style: context.titleStyle
+                    ?.withColor(context.colorScheme.onSurface)),
+            content: SingleChildScrollView(
+                child: Column(children: [
+              TextButton(
+                  onPressed: () => context.go('/fld-policy'),
+                  child: const Text('FLD Floating Dictionary')),
+              TextButton(
+                  onPressed: () => context.go('/take-note-policy'),
+                  child: const Text('Take Note')),
+              TextButton(
+                  onPressed: () => context.go('/hilarity-policy'),
+                  child: const Text('Hilarity Jokes'))
+            ])));
+      });
 
-void openGooglePlayLink() => launchUrl(
-    Uri.parse('https://play.google.com/store/apps/dev?id=5382562347439530585'));
+  void openGooglePlayLink() => launchUrl(Uri.parse(
+      'https://play.google.com/store/apps/dev?id=5382562347439530585'));
 
-String get body => '''
+  String get body => '''
  <body>
     <p><b>Hey there</b>, I'm Ahmad Suleiman, a passionate software engineer with a knack for 
     crafting innovative solutions. My expertise spans app development, API 
@@ -156,24 +170,4 @@ String get body => '''
     Absolutely all my stuff!🡭</a></h2>
 </body>
 ''';
-
-void showPolicyDialog(BuildContext context) async {
-  return showDialog<void>(
-      context: context, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-            title: const Text('Privacy Policies'),
-            content: SingleChildScrollView(
-                child: Column(children: [
-              TextButton(
-                  onPressed: () => context.go('/fld-policy'),
-                  child: const Text('FLD Floating Dictionary')),
-              TextButton(
-                  onPressed: () => context.go('/take-note-policy'),
-                  child: const Text('Take Note')),
-              TextButton(
-                  onPressed: () => context.go('/hilarity-policy'),
-                  child: const Text('Hilarity Jokes'))
-            ])));
-      });
 }

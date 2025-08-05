@@ -1,5 +1,8 @@
 import 'package:ahmadu_suleiman/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+final primaryColor = Colors.brown;
 
 void main() {
   runApp(const MyApp());
@@ -10,17 +13,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = GoogleFonts.notoSansTextTheme();
     return MaterialApp.router(
         title: 'Ahmad Suleiman',
         theme: ThemeData(
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            fontFamily: 'Lato',
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown)),
+            textTheme: textTheme,
+            colorScheme: ColorScheme.fromSeed(seedColor: primaryColor)),
         darkTheme: ThemeData(
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            fontFamily: 'Lato',
+            textTheme: textTheme,
             colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.brown, brightness: Brightness.dark)),
+                seedColor: primaryColor, brightness: Brightness.dark)),
         routerConfig: Routes.router);
   }
 }

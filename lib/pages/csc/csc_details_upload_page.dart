@@ -1,11 +1,12 @@
+import 'package:ahmadu_suleiman/utils/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../models/student.dart';
-import '../util.dart';
+import '../../models/student.dart';
+import '../../util.dart';
 
 class CscDetailsUploadPage extends StatefulWidget {
   const CscDetailsUploadPage({super.key});
@@ -43,8 +44,8 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
         appBar: AppBar(
             leading: Image.asset('assets/images/others/kasulogo.png'),
             title: Text('Computer Science Students Personality Flyer Creator',
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                style: context.textTheme.headlineLarge?.copyWith(
+                    color: context.primary,
                     fontWeight: FontWeight.bold))),
         body: SingleChildScrollView(
             child: Padding(
@@ -79,7 +80,7 @@ class _CscDetailsUploadPageState extends State<CscDetailsUploadPage> {
                   ElevatedButton.icon(
                       style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(
-                              Theme.of(context).colorScheme.primaryContainer)),
+                              context.colorScheme.primaryContainer)),
                       onPressed: () {
                         if (dob == null) return snackBar(context, 'No date?');
                         if (localImage != null) {

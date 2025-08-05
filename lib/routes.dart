@@ -1,11 +1,11 @@
-import 'package:ahmadu_suleiman/pages/csc_personality_page.dart';
+import 'package:ahmadu_suleiman/pages/csc/csc_personality_page.dart';
 import 'package:ahmadu_suleiman/pages/home_page.dart';
 import 'package:ahmadu_suleiman/pages/policy_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'models/student.dart';
-import 'pages/csc_details_upload_page.dart';
+import 'pages/csc/csc_details_upload_page.dart';
 
 class Routes {
   static final GoRouter router = GoRouter(

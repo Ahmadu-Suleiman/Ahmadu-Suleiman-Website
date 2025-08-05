@@ -36,16 +36,17 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   url_launcher: ^6.3.0
-  flutter_widget_from_html: ^0.15.1
+  flutter_widget_from_html: ^0.17.0
   flutter_launcher_icons: ^0.14.1
-  go_router: ^14.2.3
+  go_router: ^16.1.0
   font_awesome_flutter: ^10.7.0
   rename_app: ^1.6.1
   image_picker: ^1.1.2
-  file_saver: ^0.2.14
-  intl: ^0.19.0
+  file_saver: ^0.3.1
+  intl: ^0.20.2
   screenshot: ^3.0.0
   flutter_native_splash: ^2.4.5
+  google_fonts: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +57,8 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
+  flutter_gen_runner: ^5.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -85,19 +87,19 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Lato
-      fonts:
-        - asset: fonts/Lato-Black.ttf
-        - asset: fonts/Lato-BlackItalic.ttf
-        - asset: fonts/Lato-Bold.ttf
-        - asset: fonts/Lato-BoldItalic.ttf
-        - asset: fonts/Lato-Italic.ttf
-        - asset: fonts/Lato-Light.ttf
-        - asset: fonts/Lato-LightItalic.ttf
-        - asset: fonts/Lato-Regular.ttf
-        - asset: fonts/Lato-Thin.ttf
-        - asset: fonts/Lato-ThinItalic.ttf
+#  fonts:
+#    - family: Lato
+#      fonts:
+#        - asset: fonts/Lato-Black.ttf
+#        - asset: fonts/Lato-BlackItalic.ttf
+#        - asset: fonts/Lato-Bold.ttf
+#        - asset: fonts/Lato-BoldItalic.ttf
+#        - asset: fonts/Lato-Italic.ttf
+#        - asset: fonts/Lato-Light.ttf
+#        - asset: fonts/Lato-LightItalic.ttf
+#        - asset: fonts/Lato-Regular.ttf
+#        - asset: fonts/Lato-Thin.ttf
+#        - asset: fonts/Lato-ThinItalic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

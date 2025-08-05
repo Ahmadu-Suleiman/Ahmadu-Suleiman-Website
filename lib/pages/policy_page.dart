@@ -1,3 +1,4 @@
+import 'package:ahmadu_suleiman/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -12,8 +13,7 @@ class PolicyPage extends StatelessWidget {
         appBar: AppBar(title: Text('$name Policy')),
         body: SingleChildScrollView(
             padding: const EdgeInsets.all(8),
-            child: HtmlWidget(body,
-                textStyle: Theme.of(context).textTheme.bodyLarge)));
+            child: HtmlWidget(body, textStyle: context.sentenceStyle)));
   }
 
   String get body => '''

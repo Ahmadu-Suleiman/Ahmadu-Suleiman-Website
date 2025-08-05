@@ -1,9 +1,10 @@
+import 'package:ahmadu_suleiman/utils/extensions.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:screenshot/screenshot.dart';
 
-import '../models/student.dart';
+import '../../models/student.dart';
 
 class CscPersonalityPage extends StatefulWidget {
   const CscPersonalityPage({super.key, required this.student});
@@ -38,38 +39,34 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
     ]))));
   }
 
-  void preview() {
-    controllerImage.capture().then((bytes) {
-      if (mounted) {
-        showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                    title: Text('Flyer preview'),
-                    content: Image.memory(bytes!),
-                    actions: [
-                      TextButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: Text('Cancel'))
-                    ]));
-      }
-    });
-  }
+  void preview() => controllerImage.capture().then((bytes) {
+        if (mounted) {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                      title: Text('Flyer preview'),
+                      content: Image.memory(bytes!),
+                      actions: [
+                        TextButton(
+                            onPressed: () => context.pop(),
+                            child: Text('Cancel'))
+                      ]));
+        }
+      });
 
-  void saveImage() {
-    controllerImage.capture().then((bytes) => FileSaver.instance.saveFile(
-        name: '${student.fullName} CSC Personality Flyer ${DateTime.now()}',
-        bytes: bytes,
-        ext: '.png',
-        mimeType: MimeType.png));
-  }
+  void saveImage() =>
+      controllerImage.capture().then((bytes) => FileSaver.instance.saveFile(
+          name: '${student.fullName} CSC Personality Flyer ${DateTime.now()}',
+          bytes: bytes,
+          fileExtension: '.png',
+          mimeType: MimeType.png));
 
   Widget get flyerWidget => Screenshot(
       controller: controllerImage,
       child: Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              border: Border.all(
-                  color: Theme.of(context).colorScheme.primary, width: 1)),
+              color: context.colorScheme.surface,
+              border: Border.all(color: context.colorScheme.primary, width: 1)),
           child: IntrinsicWidth(
               child: IntrinsicHeight(
                   child: Container(
@@ -79,16 +76,11 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                                   'assets/images/others/background.png'),
                               fit: BoxFit.cover,
                               colorFilter: ColorFilter.mode(
-                                  Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.1),
+                                  context.colorScheme.primary.withAlpha(25),
                                   BlendMode.srcIn))),
                       child: Stack(children: [
                         Container(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
+                            color: context.colorScheme.onPrimaryContainer,
                             width: 60,
                             height: double.infinity),
                         Column(children: [
@@ -99,11 +91,8 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                         ])
                       ]))))));
 
-  Widget get generatorButton => Column(children: [
-        Divider(
-            height: 0,
-            thickness: 4,
-            color: Theme.of(context).colorScheme.primary),
+  Widget get generatorButton => Column(spacing: 20, children: [
+        Divider(height: 0, thickness: 4, color: context.primary),
         const Center(
             child: Padding(
                 padding: EdgeInsets.all(20),
@@ -114,25 +103,23 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                     "it will be displayed. If you encounter any issues, try "
                     "clicking 'Preview' for a viewable version you can "
                     "screenshot."))),
-        const SizedBox(height: 20),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          ElevatedButton.icon(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                      Theme.of(context).colorScheme.primaryContainer)),
-              onPressed: preview,
-              label: const Text('Preview'),
-              icon: const Icon(Icons.image)),
-          const SizedBox(width: 20),
-          ElevatedButton.icon(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                      Theme.of(context).colorScheme.primaryContainer)),
-              onPressed: saveImage,
-              label: const Text('Generate'),
-              icon: const Icon(Icons.download))
-        ]),
-        const SizedBox(height: 20)
+        Row(
+            spacing: 20,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: context.colorScheme.primaryContainer),
+                  onPressed: preview,
+                  label: const Text('Preview'),
+                  icon: const Icon(Icons.image)),
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: context.colorScheme.primaryContainer),
+                  onPressed: saveImage,
+                  label: const Text('Generate'),
+                  icon: const Icon(Icons.download))
+            ]),
       ]);
 
   Widget get banner => Padding(
@@ -143,19 +130,18 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
         const SizedBox(width: 20),
         Column(children: [
           Text('CSC CLASS OF 2024',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  letterSpacing: 1,
-                  color: Theme.of(context).colorScheme.primary)),
+              style: context.textTheme.headlineMedium?.copyWith(
+                  letterSpacing: 1, color: context.colorScheme.primary)),
           Text('Faculty of Computing Kaduna State University',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: context.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary)),
-          Divider(height: 30, color: Theme.of(context).colorScheme.primary),
+                  color: context.colorScheme.primary)),
+          Divider(height: 30, color: context.colorScheme.primary),
           Text('Computer Scientist of the day!',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+              style: context.textTheme.displayMedium?.copyWith(
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary))
+                  color: context.colorScheme.primary))
         ])
       ]));
 
@@ -179,8 +165,7 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
               Container(
                   decoration: BoxDecoration(
                       border: Border.all(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 4),
+                          color: context.colorScheme.primary, width: 4),
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                           image: MemoryImage(student.image),
@@ -194,15 +179,10 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
                       child: Center(
                           child: Text(student.fullName,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FontStyle.italic,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary)))))
+                              style: context.textTheme.titleLarge?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                  color: context.colorScheme.secondary)))))
             ]))
       ]);
 
@@ -231,13 +211,12 @@ class _CscPersonalityPageState extends State<CscPersonalityPage> {
       child: RichText(
           text: TextSpan(
               text: '$label: ',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary),
+              style: context.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold, color: context.primary),
               children: <TextSpan>[
             TextSpan(
                 text: value,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer))
+                style: context.textTheme.bodyMedium
+                    ?.copyWith(color: context.colorScheme.onPrimaryContainer))
           ])));
 }
