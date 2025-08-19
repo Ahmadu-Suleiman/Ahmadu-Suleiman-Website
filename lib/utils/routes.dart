@@ -13,7 +13,7 @@ class Routes {
   const Routes._();
 
   static final _textTheme = GoogleFonts.notoSansTextTheme();
-  static const home = 'home';
+  static const home = '/';
   static const reThinkPage = 're-think';
   static const fldPolicyPage = 'fld-policy';
   static const takeNotePolicyPage = 'take-note-policy';
@@ -22,11 +22,11 @@ class Routes {
   static const cscPersonalityPage = 'csc-personality';
 
   static final GoRouter router = GoRouter(
-      initialLocation: '/$home',
+      initialLocation: home,
       onException: (_, state, router) => router.goNamed(home),
       routes: <RouteBase>[
         GoRoute(
-            path: '/$home',
+            path: home,
             name: home,
             builder: (context, state) => const HomePage(),
             routes: <RouteBase>[
