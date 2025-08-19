@@ -13,7 +13,7 @@ extension TextStyleExtensions on TextStyle {
 
   TextStyle? get italicize => copyWith(fontStyle: FontStyle.italic);
 
-  TextStyle? withColor(Color color) => copyWith(color: color);
+  TextStyle? addColor(Color color) => copyWith(color: color);
 }
 
 extension BuildContextExtensions on BuildContext {

@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
             title: Text('Ahmad Suleiman',
                 style: context.wordStyle
-                    ?.withColor(context.colorScheme.onSurface)),
+                    ?.addColor(context.colorScheme.onSurface)),
             actions: [downloadButton]),
         body: Row(children: [
           if (isNotPhoneWidth) navigationRail,
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                                 width: 800,
                                 child: HtmlWidget(body,
-                                    textStyle: context.sentenceStyle?.withColor(
+                                    textStyle: context.sentenceStyle?.addColor(
                                         context.colorScheme.onSurface))),
                             Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                                   Assets.images.me.image(width: 400),
                                   Text(
                                       'PS: This person above is Ahmad Suleiman',
-                                      style: context.sentenceStyle?.withColor(
+                                      style: context.sentenceStyle?.addColor(
                                           context.colorScheme.onSurface))
                                 ]))
                           ])))))
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: downloadResume,
           label: Text('My Résumé',
               style:
-                  context.labelStyle?.withColor(context.colorScheme.onSurface)),
+                  context.labelStyle?.addColor(context.colorScheme.onSurface)),
           icon: const Icon(Icons.file_download)));
 
   void showPolicyDialog() async => showDialog<void>(
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) => AlertDialog(
           title: Text('Privacy Policies',
               style:
-                  context.titleStyle?.withColor(context.colorScheme.onSurface)),
+                  context.titleStyle?.addColor(context.colorScheme.onSurface)),
           content: SingleChildScrollView(
               child: Column(children: [
             TextButton(
