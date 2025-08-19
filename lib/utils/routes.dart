@@ -7,12 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../models/student.dart';
 import '../pages/csc/csc_details_upload_page.dart';
+import '../pages/re_think_page.dart';
 
 class Routes {
   const Routes._();
 
   static final _textTheme = GoogleFonts.notoSansTextTheme();
   static const home = '/';
+  static const reThinkPage = 're-think-page';
   static const fldPolicy = 'fld-policy';
   static const takeNotePolicy = 'take-note-policy';
   static const hilarityPolicy = 'hilarity-policy';
@@ -66,7 +68,16 @@ class Routes {
                                   seedColor: Colors.green)),
                           child: const CscDetailsUploadPage());
                     }
-                  })
+                  }),
+              GoRoute(
+                  path: reThinkPage,
+                  name: reThinkPage,
+                  builder: (context, state) => Theme(
+                      data: ThemeData(
+                          textTheme: GoogleFonts.latoTextTheme(),
+                          colorScheme:
+                              ColorScheme.fromSeed(seedColor: Colors.green)),
+                      child: ReThinkPage()))
             ])
       ]);
 }

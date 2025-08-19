@@ -68,17 +68,22 @@ class _HomePageState extends State<HomePage> {
   Widget get navigationRail => NavigationRail(
           selectedIndex: 0,
           onDestinationSelected: (int index) => setState(() {
-                if (index == 2) context.pushNamed(Routes.cscUploadDetailsPage);
-                if (index == 1) showPolicyDialog();
+                if (index == 1) context.pushNamed(Routes.reThinkPage);
+                if (index == 2) showPolicyDialog();
+                if (index == 3) context.pushNamed(Routes.cscUploadDetailsPage);
               }),
           labelType: NavigationRailLabelType.all,
           destinations: const <NavigationRailDestination>[
             NavigationRailDestination(
-                icon: Icon(Icons.person),
+                icon: Icon(Icons.person_outline),
                 selectedIcon: Icon(Icons.person),
                 label: Text('My profile')),
             NavigationRailDestination(
-                icon: Icon(Icons.notes),
+                icon: Icon(Icons.eco_outlined),
+                selectedIcon: Icon(Icons.eco),
+                label: Text('ReThink')),
+            NavigationRailDestination(
+                icon: Icon(Icons.notes_outlined),
                 selectedIcon: Icon(Icons.notes),
                 label: Text('Privacy Policies ')),
             NavigationRailDestination(

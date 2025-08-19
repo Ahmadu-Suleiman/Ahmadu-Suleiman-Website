@@ -40,6 +40,10 @@ class $AssetsImagesGen {
 class $AssetsImagesOthersGen {
   const $AssetsImagesOthersGen();
 
+  /// File path: assets/images/others/ReThink.png
+  AssetGenImage get reThink =>
+      const AssetGenImage('assets/images/others/ReThink.png');
+
   /// File path: assets/images/others/background.png
   AssetGenImage get background =>
       const AssetGenImage('assets/images/others/background.png');
@@ -49,7 +53,7 @@ class $AssetsImagesOthersGen {
       const AssetGenImage('assets/images/others/kasulogo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [background, kasulogo];
+  List<AssetGenImage> get values => [reThink, background, kasulogo];
 }
 
 class Assets {
