@@ -13,43 +13,44 @@ class Routes {
   const Routes._();
 
   static final _textTheme = GoogleFonts.notoSansTextTheme();
-  static const home = '/';
-  static const reThinkPage = 're-think-page';
-  static const fldPolicy = 'fld-policy';
-  static const takeNotePolicy = 'take-note-policy';
-  static const hilarityPolicy = 'hilarity-policy';
-  static const cscUploadDetailsPage = 'csc-upload-details-page';
-  static const cscPersonalityPage = 'csc-personality-page';
+  static const home = 'home';
+  static const reThinkPage = 're-think';
+  static const fldPolicyPage = 'fld-policy';
+  static const takeNotePolicyPage = 'take-note-policy';
+  static const hilarityPolicyPage = 'hilarity-policy';
+  static const cscUploadDetailsPage = 'csc-upload-details';
+  static const cscPersonalityPage = 'csc-personality';
 
   static final GoRouter router = GoRouter(
-      onException: (_, state, router) => router.go(home),
+      initialLocation: '/$home',
+      onException: (_, state, router) => router.goNamed(home),
       routes: <RouteBase>[
         GoRoute(
-            path: home,
+            path: '/$home',
             name: home,
             builder: (context, state) => const HomePage(),
             routes: <RouteBase>[
               GoRoute(
-                  path: fldPolicy,
-                  name: fldPolicy,
+                  path: fldPolicyPage, // No leading slash for child routes
+                  name: fldPolicyPage,
                   builder: (context, state) =>
-                      const PolicyPage(name: 'FLD Floating Dictionary')),
+                  const PolicyPage(name: 'FLD Floating Dictionary')),
               GoRoute(
-                  path: takeNotePolicy,
-                  name: takeNotePolicy,
+                  path: takeNotePolicyPage, // No leading slash for child routes
+                  name: takeNotePolicyPage,
                   builder: (context, state) =>
-                      const PolicyPage(name: 'Take Note')),
+                  const PolicyPage(name: 'Take Note')),
               GoRoute(
-                  path: cscUploadDetailsPage,
+                  path: cscUploadDetailsPage, // No leading slash for child routes
                   name: cscUploadDetailsPage,
                   builder: (context, state) => Theme(
                       data: ThemeData(
                           textTheme: _textTheme,
                           colorScheme:
-                              ColorScheme.fromSeed(seedColor: Colors.green)),
+                          ColorScheme.fromSeed(seedColor: Colors.green)),
                       child: const CscDetailsUploadPage())),
               GoRoute(
-                  path: cscPersonalityPage,
+                  path: cscPersonalityPage, // No leading slash for child routes
                   name: cscPersonalityPage,
                   builder: (context, state) {
                     try {
@@ -70,13 +71,13 @@ class Routes {
                     }
                   }),
               GoRoute(
-                  path: reThinkPage,
+                  path: reThinkPage, // No leading slash for child routes
                   name: reThinkPage,
                   builder: (context, state) => Theme(
                       data: ThemeData(
                           textTheme: GoogleFonts.latoTextTheme(),
                           colorScheme:
-                              ColorScheme.fromSeed(seedColor: Colors.green)),
+                          ColorScheme.fromSeed(seedColor: Colors.green)),
                       child: ReThinkPage()))
             ])
       ]);

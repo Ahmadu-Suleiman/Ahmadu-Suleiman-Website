@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
   Widget get navigationRail => NavigationRail(
           selectedIndex: 0,
           onDestinationSelected: (int index) => setState(() {
-                if (index == 1) context.pushNamed(Routes.reThinkPage);
+                if (index == 1) context.goNamed(Routes.reThinkPage);
                 if (index == 2) showPolicyDialog();
                 if (index == 3) context.pushNamed(Routes.cscUploadDetailsPage);
               }),
@@ -110,10 +110,10 @@ class _HomePageState extends State<HomePage> {
           content: SingleChildScrollView(
               child: Column(children: [
             TextButton(
-                onPressed: () => context.pushNamed(Routes.fldPolicy),
+                onPressed: () => context.pushNamed(Routes.fldPolicyPage),
                 child: const Text('FLD Floating Dictionary')),
             TextButton(
-                onPressed: () => context.pushNamed(Routes.takeNotePolicy),
+                onPressed: () => context.pushNamed(Routes.takeNotePolicyPage),
                 child: const Text('Take Note'))
           ]))));
 
