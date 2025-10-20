@@ -68,7 +68,8 @@ class ReThinkPage extends StatelessWidget {
                   content: Text.rich(TextSpan(children: [
                     TextSpan(
                         style: context.sentenceStyle,
-                        text: 'If your download is yet to start then try using '),
+                        text:
+                            'If your download is yet to start then try using '),
                     TextSpan(
                         text: 'this link.',
                         style: context.sentenceStyle
@@ -87,21 +88,19 @@ class ReThinkPage extends StatelessWidget {
     )));
   }
 
-  Widget _bulletPoint(BuildContext context, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Row(
-        spacing: 12,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.circle, color: context.primary, size: 8),
-          Flexible(
-            child: Text(text,
-                textAlign: TextAlign.center, style: context.sentenceStyle),
-          ),
-        ],
-      ),
-    );
-  }
+  Widget _bulletPoint(BuildContext context, String text) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6.0),
+        child: Row(
+          spacing: 12,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.circle, color: context.primary, size: 8),
+            Flexible(
+              child: Text(text,
+                  textAlign: TextAlign.center, style: context.sentenceStyle),
+            ),
+          ],
+        ),
+      );
 }

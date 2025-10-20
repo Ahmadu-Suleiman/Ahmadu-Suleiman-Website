@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
           onDestinationSelected: (int index) => setState(() {
                 if (index == 1) context.goNamed(Routes.reThinkPage);
                 if (index == 2) showPolicyDialog();
-                if (index == 3) context.pushNamed(Routes.cscUploadDetailsPage);
+                if (index == 3) context.goNamed(Routes.cscUploadDetailsPage);
               }),
           labelType: NavigationRailLabelType.all,
           destinations: const <NavigationRailDestination>[
@@ -110,10 +110,10 @@ class _HomePageState extends State<HomePage> {
           content: SingleChildScrollView(
               child: Column(children: [
             TextButton(
-                onPressed: () => context.pushNamed(Routes.fldPolicyPage),
+                onPressed: () => context.goNamed(Routes.fldPolicyPage),
                 child: const Text('FLD Floating Dictionary')),
             TextButton(
-                onPressed: () => context.pushNamed(Routes.takeNotePolicyPage),
+                onPressed: () => context.goNamed(Routes.takeNotePolicyPage),
                 child: const Text('Take Note'))
           ]))));
 
