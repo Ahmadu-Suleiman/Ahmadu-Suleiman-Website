@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
             title: Text('Ahmad Suleiman',
-                style: context.wordStyle
-                    ?.addColor(context.colorScheme.onSurface)),
+                style:
+                    context.wordStyle?.addColor(context.colorScheme.onSurface)),
             actions: [downloadButton]),
         body: Row(children: [
           if (isNotPhoneWidth) navigationRail,
@@ -51,8 +51,7 @@ class _HomePageState extends State<HomePage> {
                                     horizontal: 20, vertical: 40),
                                 child: Column(spacing: 20, children: [
                                   Assets.images.me.image(width: 400),
-                                  Text(
-                                      'PS: This person above is Ahmad Suleiman',
+                                  Text('Ahmad Suleiman',
                                       style: context.sentenceStyle?.addColor(
                                           context.colorScheme.onSurface))
                                 ]))
@@ -137,145 +136,102 @@ class _HomePageState extends State<HomePage> {
   }
 
   String get body => '''
-<body>
+  <body>
     <header>
-        <p><strong>Software Engineer · Digital Solutions Architect · 
-        Impact-Driven Technologist</strong></p>
+        <p>Software Engineer · Building solutions that work for everyone</p>
     </header>
 
     <hr>
     <section>
-        <h2>About Me</h2>
-        <p>I'm Ahmad Suleiman, a problem-solver at heart who transforms complex 
-        challenges into elegant digital solutions. My work spans the 
-        intersection of technology and social impact, from empowering 
-        smallholder farmers in remote areas to building platforms that amplify 
-        community voices and democratize access to AI.</p>
+        <h2>What I Do</h2>
+        <p>I build software that solves real problems, especially for people who get left out of the tech conversation. Most of my work focuses on making technology accessible in places with unreliable internet, basic phones, or limited resources.</p>
         
-        <p>I specialize in creating resilient, human-centered software that 
-        works even in constrained environments. Whether it's developing 
-        SMS-based platforms for users without internet access or building 
-        local-network tools that bypass cloud dependencies, I believe the best 
-        innovations emerge when technical excellence meets real-world 
-        constraints.</p>
+        <p>I've spent a lot of time thinking about what happens when you can't assume everyone has a smartphone or WiFi. That constraint has pushed me to build things differently—SMS platforms for farmers, local network tools that don't need the cloud, and interfaces that work on the simplest devices.</p>
         
-        <p><strong>Core Expertise:</strong> Full-stack development, API design, 
-        mobile applications, SMS/USSD systems, data analysis, and 
-        accessibility-first design.</p>
+        <p><strong>What I work with:</strong> Full-stack development, API design, mobile apps, SMS/USSD systems, and building for accessibility from the ground up.</p>
     </section>
-    <hr>
 
+    <hr>
     <section>
-        <h2>Featured Projects & Achievements</h2>
+        <h2>My Projects</h2>
 
         <article>
             <h3><a href="https://medium.com/@ahmadumeta4.1/agriask-my-award-winning-innovative-solution-for-africas-talking-agritech-hackathon-d426c17f183b" target="_blank">AgriAsk</a></h3>
             <p><em>Winner, Africa's Talking AgriTech Hackathon</em></p>
-            <p>An SMS-based agricultural consultation platform that delivers 
-            expert farming advice on crops, pest management, and weather 
-            patterns, no internet required. Designed to boost agricultural 
-            yields, reduce crop losses, and improve rural livelihoods across 
-            under-connected regions.</p>
-            <p><strong>Impact:</strong> Empowering smallholder farmers with 
-            instant access to agricultural expertise through basic mobile phones.</p>
+            <p>Farmers with basic phones can text questions about crops, pests, or weather and get expert advice back via SMS. No internet needed, no app to download. It won a hackathon, but more importantly, it works in places where most tech solutions don't.</p>
+            <p>The idea came from seeing how much agricultural knowledge exists but how little of it reaches the people who actually need it.</p>
         </article>
-
-        <hr>
 
         <article>
             <h3><a href="https://medium.com/@ahmadumeta4/from-hackathon-win-to-real-world-change-cases-comeback-story-ba24e6c29dae" target="_blank">vCase & CASE Platform</a></h3>
             <p><em>Grand winner, vCon TadHack</em></p>
-            <p>A comprehensive dual ecosystem for justice and accountability:</p>
+            <p>Two connected platforms for tracking cases of injustice:</p>
             <ul>
-                <li><strong>CASE Platform:</strong> 
-                A citizen-driven portal enabling communities to report, document, 
-                and track cases of abuse, corruption, and social injustice with 
-                full transparency.</li>
-                <li><strong>vCase:</strong> A modular 
-                toolkit that uses vCon to empower NGOs, civic organizations, 
-                and advocacy groups to efficiently manage, collaborate on, and 
-                resolve cases at scale, always centering the voices of those 
-                affected.</li>
+                <li><strong>CASE Platform:</strong> Lets citizens easily reach out to support organizations regarding the issue they are facing.</li>
+                <li><strong>vCase:</strong> Gives support organization better tools to manage these cases, collaborate across organizations, and actually follow through to resolution.</li>
             </ul>
-            <p><strong>Impact:</strong> Bridging the gap between grassroots reporting and institutional response for systemic change.</p>
+            <p>The goal is to make it harder for these cases to fall through the cracks and easier for communities to see progress.</p>
         </article>
 
-        <hr>
         <article>
             <h3><a href="https://youtu.be/BSyg51_xm34?si=8QadQGopTlR5fcdS" target="_blank">AskAll</a></h3>
             <p><em>Excellence in AI Accessibility Recognition</em></p>
-            <p>A revolutionary platform that brings Gemini AI capabilities to 
-            feature phones via SMS, specifically designed for African 
-            communities with limited internet connectivity. Breaks down digital 
-            barriers by making advanced AI tools accessible to users regardless 
-            of their device or connection quality.</p>
-            <p><strong>Impact:</strong> Democratizing AI access for millions 
-            who were previously excluded from the AI revolution.</p>
+            <p>Brings Gemini AI to feature phones through SMS. You text your question, you get an AI-powered answer back. Built specifically for African communities where smartphones aren't the default.</p>
+            <p>Everyone's talking about AI access, but most of it assumes you have a good internet connection and a recent phone. This works around that.</p>
         </article>
-        <hr>
 
         <article>
-            <h3>Additional Innovations</h3>
+            <h3>Other Things I've Built</h3>
             
             <h4><a href="https://play.google.com/store/apps/details?id=com.meta4projects.fldfloatingdictionary" target="_blank">FLD Floating Dictionary</a></h4>
-            <p>A lightweight, always-on-top floating dictionary that provides 
-            instant word definitions without leaving your current app, perfect 
-            for seamless learning and continuous focus.</p>
+            <p>A dictionary that floats on top of whatever else you're doing on your phone. Look up words without switching apps or losing your place.</p>
             
             <h4><a href="https://play.google.com/store/apps/details?id=com.meta4projects.takenote" target="_blank">Take Note</a></h4>
-            <p>An intelligently organized note-taking application featuring 
-            nested subsections and hierarchical structure, designed for complex 
-            thinking and project management.</p>
+            <p>A note-taking app with nested sections for organizing complex projects. Built it because I needed a better way to structure my own thinking.</p>
             
             <h4><a href="https://github.com/Ahmadu-Suleiman/WiPy" target="_blank">WiPy</a></h4>
-            <p>A minimalist web application that transforms any computer into 
-            a local-network file server, enabling instant file sharing within 
-            Wi-Fi networks without cloud dependencies or external devices.</p>
+            <p>Turn any computer into a file server on your local network. Share files with people nearby without uploading to the cloud or fumbling with USB drives.</p>
         </article>
     </section>
 
     <hr>
-
     <section>
-        <h2>Awards & Recognition</h2>
+        <h2>Recognition</h2>
         <ul>
-            <li><strong>Winner</strong> - AgriTech Hackathon (Africa's Talking) for <em>AgriAsk</em></li>
-            <li><strong>Grand winner, vCon TadHack</strong> - Innovation Challenge for <em>vCase/CASE Platform</em></li>
-            <li><strong>Excellence in AI Accessibility</strong> - Recognition for <em>AskAll</em></li>
-            <li><strong>Open Source Contributor</strong> - Active contributions to developer community</li>
+            <li>Winner - AgriTech Hackathon (Africa's Talking) for AgriAsk</li>
+            <li>Grand winner, vCon TadHack for vCase/CASE Platform</li>
+            <li>Excellence in AI Accessibility for AskAll</li>
+            <li>Open source contributor</li>
         </ul>
     </section>
 
     <hr>
-
     <section>
-        <h2>Technical Philosophy</h2>
-    
-        <p>I believe in building lean, resilient solutions that prioritize 
-        human needs over technical complexity. My approach focuses on:</p>
-        <ul>
-            <li><strong>Accessibility-first design</strong> that works across all devices and connection types</li>
-            <li><strong>Constraint-driven innovation</strong> that turns limitations into competitive advantages</li>
-            <li><strong>Community-centered development</strong> that amplifies local voices and needs</li>
-            <li><strong>Sustainable impact</strong> through scalable, maintainable architectures</li>
-        </ul>
+        <h2>Get in Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <strong>Email</strong><br>
+                <a href="mailto:ahmadumeta4.1@gmail.com">ahmadumeta4.1@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <strong>Phone</strong><br>
+                <a href="tel:+2348138445664">+234 813 844 5664</a>
+            </div>
+            <div class="contact-item">
+                <strong>LinkedIn</strong><br>
+                <a href="https://www.linkedin.com/in/ahmad-suleiman-1a209a246/" target="_blank">Ahmad Suleiman</a>
+            </div>
+            <div class="contact-item">
+                <strong>GitHub</strong><br>
+                <a href="https://github.com/Ahmadu-Suleiman" target="_blank">@Ahmadu-Suleiman</a>
+            </div>
+        </div>
+        <p style="margin-top: 25px; text-align: center;"><a href="https://linktr.ee/ahmadumeta4" target="_blank">All my links</a></p>
     </section>
 
     <hr>
-
-    <section>
-        <h2>Let's Connect</h2>
-        <p><strong>Phone:</strong> <a href="tel:+2348138445664">+234 813 844 5664</a></p>
-        <p><strong>Email:</strong> <a href="mailto:ahmadumeta4.1@gmail.com">ahmadumeta4.1@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ahmad-suleiman-1a209a246/" target="_blank">Ahmad Suleiman</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/Ahmadu-Suleiman" target="_blank">@Ahmadu-Suleiman</a></p>
-        <p><strong>My other stuff:</strong> <a href="https://linktr.ee/ahmadumeta4" target="_blank">Linktree</a></p>
-    </section>
-
-    <hr>
-
     <footer>
-        <p><em>"Don't forget to reach out!"</em></p>
+        <p>Do reach out!</p>
     </footer>
 </body>
 ''';
