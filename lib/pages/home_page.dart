@@ -167,8 +167,8 @@ class _HomePageState extends State<HomePage> {
             <p><em>Grand winner, vCon TadHack</em></p>
             <p>Two connected platforms for tracking cases of injustice:</p>
             <ul>
-                <li><strong>CASE Platform:</strong> Lets citizens easily reach out to support organizations regarding the issue they are facing.</li>
-                <li><strong>vCase:</strong> Gives support organization better tools to manage these cases, collaborate across organizations, and actually follow through to resolution.</li>
+                <li><strong><a href="https://case-be-heard-website.web.app/" target="_blank">CASE Platform:</a></strong> Lets citizens easily reach out to support organizations regarding the issue they are facing.</li>
+                <li><strong><a href="https://vcase-be-heard.streamlit.app/" target="_blank">vCase:</a></strong> Gives support organization better tools to manage these cases, collaborate across organizations, and actually follow through to resolution.</li>
             </ul>
             <p>The goal is to make it harder for these cases to fall through the cracks and easier for communities to see progress.</p>
         </article>
